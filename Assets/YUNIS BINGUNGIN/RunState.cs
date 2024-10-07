@@ -1,37 +1,30 @@
-﻿using UnityEditor.Experimental.GraphView;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RunState : BaseState
 {
-    Player_Movement movement;
-    Rigidbody2D rb;
-    Animator animator;
-    float speed, accel;
-    public RunState(Player_Movement movement, float speed, float accel, Rigidbody2D rb, Animator animator)
+    private readonly Animator LowerBody, UpperBody;
+    Rigidbody2D rb2d;
+    float MaxSpeed;
+    public RunState(Animator LowerBody, Animator UpperBody, Rigidbody2D rb2d, float MaxSpeed)
     {
-        this.movement = movement;
-        this.rb = rb;
-        this.animator = animator;
-        this.speed = speed;
-        this.accel = accel;
+        this.LowerBody = LowerBody;
+        this.UpperBody = UpperBody;
+        this.rb2d = rb2d;
     }
     public override void OnEnter()
     {
+        LowerBody.Play("Run");
+        UpperBody.Play("Run");
     }
     public override void OnLogic()
     {
-        float direction = movement.xInput;
-        //get the value of force / velocity difference
-        float accelX = direction * speed - rb.velocity.x;
-        float movements = accelX * accel;
-
-        rb.AddForce(movements * Vector2.right, ForceMode2D.Force);
-
-        rb.velocity = new Vector2(0, rb.velocity.y);
-        animator.SetFloat("Direction", direction);
+        float speed = Helpers.Map(Mathf.Abs(rb2d.velocity.x), 0, MaxSpeed, 0, 1, true);
+        LowerBody.speed = speed;
+        UpperBody.speed = speed;
     }
     public override void OnExit()
     {
-
+        LowerBody.speed = 1;
+        UpperBody.speed = 1;
     }
 }

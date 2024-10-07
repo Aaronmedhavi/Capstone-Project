@@ -11,10 +11,12 @@ public class GroundSensor : MonoBehaviour
     public Action OnExit;
     void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("HAI");
         OnEnter?.Invoke();
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        Debug.Log("HAI JUGA");
         OnExit?.Invoke();
     }
     public bool isGrounded => Physics2D.OverlapBox(transform.position, GroundCheckSize, 0, layerMask) != null;

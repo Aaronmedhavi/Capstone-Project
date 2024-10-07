@@ -3,14 +3,16 @@ using UnityEngine;
 
 public class IdleState : BaseState
 {
-    Animator animator;
-    public IdleState(Animator anim)
+    private readonly Animator LowerBody, UpperBody;
+    public IdleState(Animator LowerBody, Animator UpperBody)
     {
-        animator = anim;
+        this.LowerBody = LowerBody;
+        this.UpperBody = UpperBody;
     }
     public override void OnEnter()
     {
-        animator.Play("Idle");
+        LowerBody.Play("Idle");
+        UpperBody.Play("Idle");
     }
     public override void OnExit()
     {

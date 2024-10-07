@@ -16,6 +16,7 @@ public class StateMachine<T, T2> where T : Enum where T2 : Enum
     private Dictionary<T, BaseState> States;
     private Dictionary<T2, List<Transition<T>>> TriggerEvent;
     private Dictionary<T, List<Transition<T>>> Transitions;
+    private List<Transition<T>> GlobalTransitions = new();
     public BaseState CurrentState { get; private set; }
     public T State { get; private set; }
     public void Init()
@@ -86,6 +87,10 @@ public class StateMachine<T, T2> where T : Enum where T2 : Enum
             }
         }
     }
+    public void AddGlobalConditions(List<Transition<T>> transitions)
+    {
+        GlobalTransitions.AddRange(transitions);
+    }
     public void Trigger(T2 eventName)
     {
         var state = TriggerEvent[eventName].Find((x) => x.from.Equals(State));
@@ -97,10 +102,20 @@ public class StateMachine<T, T2> where T : Enum where T2 : Enum
     }
     public void Check()
     {
-        List<Transition<T>> transitions = Transitions[State];
-        foreach (var transition in transitions)
+        if (Transitions.ContainsKey(State))
         {
-            if(transition.Check(out var toState))
+            List<Transition<T>> transitions = Transitions[State];
+            foreach (var transition in transitions)
+            {
+                if (transition.Check(out var toState))
+                {
+                    MoveState(toState);
+                }
+            }
+        }
+        foreach(var transition in GlobalTransitions)
+        {
+            if(!transition.Check(out var toState))
             {
                 MoveState(toState);
             }

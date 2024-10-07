@@ -1,29 +1,9 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+
 public enum playerState
 {
-    idle, run, attack, air, run_air
+    idle, run, attack, air
 }
-//private StateMachine<playerState, playereventState> SM = new();
-
-//SM.AddStates(new List<(playerState, BaseState)>()
-//{
-//    (playerState.idle, new IdleState(animator)),
-//    (playerState.run, new RunState(this, Walking_Speed, Acceleration, rb, animator)),
-//    (playerState.air, new AirState(rb, animator, jumpPower)),
-//    (playerState.run_air, new RunState(this, Walking_Speed, flying_Acceleration, rb, animator))
-//});
-//SM.AddTriggerEvents(new List<(playereventState, Transition<playerState>)>()
-//{
-//    (playereventState.grounded, new Transition<playerState>(playerState.air, playerState.idle)),
-//    (playereventState.onAir, new Transition<playerState>(playerState.idle, playerState.air))
-//});
-//SM.AddConditions(new List<Transition<playerState>>()
-//{
-//    new Transition<playerState>(playerState.idle, playerState.run, () => xInput != 0 && isGrounded),
-//    new Transition<playerState>(playerState.run, playerState.idle, () => xInput == 0 && isGrounded)
-//});
-//groundSensor.OnEnter += groundSensor_OnEnter;
 public class GroundedState : BaseState
 {
     public override void OnEnter()
@@ -48,61 +28,52 @@ public class AiredState : BaseState
     {
     }
 }
+public enum playereventState { grounded, onAir}
 public class Player_Movement : MonoBehaviour
 {
-    public enum terrainState { air, ground }
-    public enum playereventState { }
-
-    private StateMachine<terrainState, playereventState> SM = new();
-
-    [SerializeField] Animator upperBody;
-    [SerializeField] Animator lowerBody;
-
     [Header("Player Movement Settings")]
     [SerializeField] float Walking_Speed;
     [SerializeField] float Acceleration;
-    [SerializeField] float jumpPower;
+    [SerializeField] float JumpPower;
     [SerializeField] float flying_Acceleration;
-
-    [Header("Sensors")]
-    [SerializeField] GroundSensor groundSensor;
     
-    Rigidbody2D rb;
-    public float xInput { get; private set; }
-    private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
+    public float jumpPower { get { return JumpPower;  } }
+    public float speed { get { return Walking_Speed; } }
+    Animator upperBody;
+    Animator lowerBody;
 
-        SM.AddStates(new List<(terrainState, BaseState)>()
-        {
-            (terrainState.ground, new GroundedState()),
-            (terrainState.air, new AiredState())
-        });
-        SM.AddConditions(new List<Transition<terrainState>>()
-        {
-            new Transition<terrainState>(terrainState.ground, terrainState.air, () => !isGrounded),
-            new Transition<terrainState>(terrainState.air, terrainState.ground, () =>  isGrounded)
-        });
+    GroundSensor groundSensor;
+    Rigidbody2D rb2d;
+    public void Set(Animator upperBody, Animator lowerBody, GroundSensor groundSensor, Rigidbody2D rb2d)
+    {
+        this.upperBody = upperBody;
+        this.lowerBody = lowerBody;
+        this.groundSensor = groundSensor;
+        this.rb2d = rb2d;
+    }
+    public void Move(float magnitude, bool isGrounded)
+    {
+        float accel = isGrounded ? Acceleration : flying_Acceleration;
+        //get the value of force / velocity difference
+        float MoveMagnitude = magnitude * Walking_Speed - rb2d.velocity.x;
 
-        SM.SetState(terrainState.ground);
-        SM.OnEnter();
+        float movement = MoveMagnitude * accel;
+
+        rb2d.AddForce(movement * Vector2.right, ForceMode2D.Force);
+
+        if (Mathf.Abs(magnitude) < 0.01) rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+        if (Mathf.Abs(magnitude) > 0.01) transform.localScale = new Vector3(Mathf.Sign(magnitude),1,1);
     }
-    private void Update()
+    public void Jump(bool condition)
     {
-        HandleInput();
-        HandleJumpInput();
-        SM.OnLogic();   
-    }
-    void HandleJumpInput()
-    {
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        if (isGrounded && condition)
         {
-            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            rb2d.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
         }
     }
-    void HandleInput()
+    public void Dash(bool condition)
     {
-        xInput = Input.GetAxis("Horizontal");
+
     }
     bool isGrounded => groundSensor.isGrounded;
 }

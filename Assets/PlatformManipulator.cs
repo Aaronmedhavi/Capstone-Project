@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlatformManipulator : MonoBehaviour
@@ -30,7 +29,7 @@ public class PlatformManipulator : MonoBehaviour
     }
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
+        Gizmos.color = UnityEngine.Color.green;
         Gizmos.DrawWireCube(platformDetector.position, DetectorSize);
     }
 }
