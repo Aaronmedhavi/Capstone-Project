@@ -29,7 +29,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Movement"",
-                    ""Type"": ""Value"",
+                    ""type"": ""Value"",
                     ""id"": ""275ce66b-8f30-4573-87a1-70ed8bc09a89"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
@@ -38,7 +38,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Jump"",
-                    ""Type"": ""Button"",
+                    ""type"": ""Button"",
                     ""id"": ""5b967e39-0c4b-4849-926c-861910602dce"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -47,7 +47,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Attack"",
-                    ""Type"": ""Button"",
+                    ""type"": ""Button"",
                     ""id"": ""d0c9b993-f7c5-4d8f-b4c2-e752c77acbc2"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -56,7 +56,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Hotbar"",
-                    ""Type"": ""Button"",
+                    ""type"": ""Button"",
                     ""id"": ""d5e78da7-6c89-4fdd-90b1-4deffb8ca504"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -161,7 +161,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Pause"",
-                    ""Type"": ""Button"",
+                    ""type"": ""Button"",
                     ""id"": ""78caf4a3-bcaf-4766-b916-221fb8ea0d26"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
