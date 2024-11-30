@@ -12,4 +12,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9e72f486ca5fa1499c34e97d9b1cfa2, type: 3}
   m_Name: Recipe
   m_EditorClassIdentifier: 
-  recipes: []
+  recipes:
+  - colors:
+    - color: 0
+      count: 3
+    result: 0
+  - colors:
+    - color: 0
+      count: 2
+    - color: 2
+      count: 1
+    result: 0
+  - colors:
+    - color: 0
+      count: 2
+    - color: 3
+      count: 1
+    result: 0
+  - colors:
+    - color: 3
+      count: 3
+    result: 3
+  - colors:
+    - color: 3
+      count: 2
+    - color: 0
+      count: 1
+    result: 3
+  - colors:
+    - color: 3
+      count: 2
+    - color: 2
+      count: 1
+    result: 3
+  - colors:
+    - color: 2
+      count: 3
+    result: 2
+  - colors:
+    - color: 2
+      count: 2
+    - color: 0
+      count: 1
+    result: 2
+  - colors:
+    - color: 2
+      count: 2
+    - color: 3
+      count: 1
+    result: 2
