@@ -25,7 +25,7 @@ public class Player : MonoBehaviour, IEntity
 
     [Header("Player Settings")]
     [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private PlayerCombat playerCombat;
+    [SerializeField] private CombatHandler playerCombat;
     [SerializeField] private PlatformHandler platformHandler;
 
     [Header("Sensor Settings")]
@@ -52,7 +52,6 @@ public class Player : MonoBehaviour, IEntity
 
         //GameManager.input = input;
         playerMovement.player = this;
-        playerCombat.player = this;
         SM.AddState(new()
         {
             (State.idle, new _PlayerIdleState(animator, rb2d)),
@@ -70,7 +69,10 @@ public class Player : MonoBehaviour, IEntity
 
         input.Player.Jump.performed += playerMovement.Jump_Performed;
         input.Player.Jump.canceled += playerMovement.Jump_Canceled;
-        input.Player.Attack.performed += (x) => playerCombat.Attack();
+        input.Player.Attack.performed += (x) =>
+        {
+            if (IsGrounded) playerCombat.Attack();
+        };
     }
     private void Update()
     {
@@ -95,7 +97,7 @@ public class Player : MonoBehaviour, IEntity
         }
     }
     public Vector2 InputValue => input.Player.Movement.ReadValue<Vector2>();
-    public bool IsGrounded => groundSensor.IsGrounded;
     public float LedgeTime => groundSensor.LedgeTime;
+    public bool IsGrounded { get => groundSensor.IsGrounded; }
 }
 

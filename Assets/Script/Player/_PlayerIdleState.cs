@@ -13,7 +13,6 @@ public class _PlayerIdleState : BaseState
 
     public override void OnEnter()
     {
-        Debug.Log("IDLE");
     }
 
     public override void OnExit()
@@ -37,7 +36,6 @@ public class _PlayerOnAirState : BaseState
     }
     public override void OnEnter()
     {
-        Debug.Log("AIR");
         animator.SetBool("Jumping", true);
     }
     public override void OnExit()

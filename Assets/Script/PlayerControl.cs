@@ -29,7 +29,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Movement"",
-                    ""type"": ""Value"",
+                    ""Type"": ""Value"",
                     ""id"": ""275ce66b-8f30-4573-87a1-70ed8bc09a89"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
@@ -38,7 +38,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Jump"",
-                    ""type"": ""Button"",
+                    ""Type"": ""Button"",
                     ""id"": ""5b967e39-0c4b-4849-926c-861910602dce"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -47,8 +47,17 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Attack"",
-                    ""type"": ""Button"",
+                    ""Type"": ""Button"",
                     ""id"": ""d0c9b993-f7c5-4d8f-b4c2-e752c77acbc2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hotbar"",
+                    ""Type"": ""Button"",
+                    ""id"": ""d5e78da7-6c89-4fdd-90b1-4deffb8ca504"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -132,6 +141,17 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""action"": ""Attack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c89ed116-b094-48e0-be2f-77074a6f3c5c"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hotbar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -141,7 +161,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Pause"",
-                    ""type"": ""Button"",
+                    ""Type"": ""Button"",
                     ""id"": ""78caf4a3-bcaf-4766-b916-221fb8ea0d26"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
@@ -171,6 +191,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
+        m_Player_Hotbar = m_Player.FindAction("Hotbar", throwIfNotFound: true);
         // Main
         m_Main = asset.FindActionMap("Main", throwIfNotFound: true);
         m_Main_Pause = m_Main.FindAction("Pause", throwIfNotFound: true);
@@ -238,6 +259,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Movement;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Attack;
+    private readonly InputAction m_Player_Hotbar;
     public struct PlayerActions
     {
         private @PlayerControl m_Wrapper;
@@ -245,6 +267,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_Player_Movement;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
+        public InputAction @Hotbar => m_Wrapper.m_Player_Hotbar;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -263,6 +286,9 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @Attack.started += instance.OnAttack;
             @Attack.performed += instance.OnAttack;
             @Attack.canceled += instance.OnAttack;
+            @Hotbar.started += instance.OnHotbar;
+            @Hotbar.performed += instance.OnHotbar;
+            @Hotbar.canceled += instance.OnHotbar;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -276,6 +302,9 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @Attack.started -= instance.OnAttack;
             @Attack.performed -= instance.OnAttack;
             @Attack.canceled -= instance.OnAttack;
+            @Hotbar.started -= instance.OnHotbar;
+            @Hotbar.performed -= instance.OnHotbar;
+            @Hotbar.canceled -= instance.OnHotbar;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -344,6 +373,7 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnHotbar(InputAction.CallbackContext context);
     }
     public interface IMainActions
     {

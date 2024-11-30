@@ -40,7 +40,7 @@ public class PlayerOld : MonoBehaviour
         });
         SM.AddGlobalConditions(new List<EventTransition<playerState>>()
             {
-            //    (new EventTransition<playerState>(playerState.air, playerState.idle, () => !isGrounded)),
+            //    (new EventTransition<playerState>(playerState.air, playerState.idle, () => !IsGrounded)),
                 (new EventTransition<playerState>(playerState.idle, playerState.air, () => isGrounded))
             });
         playerMovement.Set(upperBody, lowerBody, groundSensor, rb2d);

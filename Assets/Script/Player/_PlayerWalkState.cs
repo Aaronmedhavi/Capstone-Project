@@ -21,7 +21,6 @@ public class _PlayerWalkState : BaseState
     }
     public override void OnEnter()
     {
-        Debug.Log("Walking");
         animator.SetBool("IsWalking", true);
     }
     public override void OnExit()
