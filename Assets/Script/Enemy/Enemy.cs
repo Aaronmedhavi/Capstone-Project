@@ -1,10 +1,15 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, IEntity
 {
+    [SerializeField] private ColorInfo info;
+    private Recipe.ColorItems color;
+    public void SetColor(Recipe.ColorItems color)
+    {
+        m_combatHandler.ChangeProjectiles(info.GetColor(color).projectiles);
+    }
     [Header("Enemy Settings")]
 
 
@@ -23,7 +28,7 @@ public class Enemy : MonoBehaviour, IEntity
     [SerializeField] private RangeSensor leavingSensor;
     [SerializeField] private RangeSensor recognitionSensor;
     [SerializeField] private RangeSensor attackingSensor;
- 
+  
     [NonSerialized] public bool MaxDistanceReached;
     [NonSerialized] public bool wasChasing;
 
@@ -37,7 +42,7 @@ public class Enemy : MonoBehaviour, IEntity
     }
     private StateMachine<State> SM = new();
     public StateMachine<State> StateMachine => SM;
-    private void Awake()
+    private void Start()
     {
         m_alertHandler.enemy = this;
         m_alertHandler.viewSettings = m_viewSettings;
@@ -90,6 +95,11 @@ public class Enemy : MonoBehaviour, IEntity
         public float patrolfurthestDistance;
         public float patrolOffset;
         public float patrolSpeed;
+
+        [Header("Ledge Detection")]
+        public Transform ledgePosition;
+        public float ledgeDistance;
+        public LayerMask layerMask;
     }
     [Serializable]
     public class AttackSettings

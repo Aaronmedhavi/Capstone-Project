@@ -37,6 +37,7 @@ public class ObjectPoolManager : MonoBehaviour
     {
         string name = ToRelease.name[..^7]; // ^ (dari belakang) search geek4geek range indices
         ToRelease.SetActive(false);
+        if(!ObjectPools.ContainsKey(name)) ObjectPools.Add(name, new());
         ObjectPools[name].Add(ToRelease);
     }
 }

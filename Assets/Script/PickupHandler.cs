@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 public interface IPickable
 {
     public enum type
@@ -16,7 +15,13 @@ public interface IPickable
 }
 public class PickupHandler : MonoBehaviour
 {
+    [NonSerialized] public Player player;
     public List<Backpack> backpacks = new();
+
+    private void Awake()
+    {
+        player = GetComponentInParent<Player>();
+    }
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.TryGetComponent<IPickable>(out var pickable))
@@ -24,19 +29,20 @@ public class PickupHandler : MonoBehaviour
             switch (pickable.Type)
             {
                 case IPickable.type.Backpack:
+                    ((Backpack)pickable).player = player;
                     backpacks.Add((Backpack)pickable);
                     break;
                 case IPickable.type.Color:
                     if(backpacks.Count > 0)
                     {
                         var BackPack = backpacks.Find(x => !x.isFull);
+                        if(BackPack != null) BackPack.Add(((ColorDrop)pickable).color);
                     }
                     break;
             }
             pickable.OnAdd();
         }
     }
-
 #if UNITY_EDITOR
     public LayerMask pickableLayer;
     private Collider2D col;

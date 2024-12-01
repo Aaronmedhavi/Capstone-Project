@@ -33,13 +33,13 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Hotbar",
+                    "name": "Dash",
                     "type": "Button",
-                    "id": "d5e78da7-6c89-4fdd-90b1-4deffb8ca504",
+                    "id": "fe5fd484-6160-4263-b8a0-2ac329ae2b23",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -122,12 +122,12 @@
                 },
                 {
                     "name": "",
-                    "id": "c89ed116-b094-48e0-be2f-77074a6f3c5c",
-                    "path": "",
+                    "id": "cbc44758-03e5-48d3-ab78-1909cce4449b",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Hotbar",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

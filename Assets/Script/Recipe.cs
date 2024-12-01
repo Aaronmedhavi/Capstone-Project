@@ -21,6 +21,11 @@ public class Recipe : ScriptableObject
     }
 
     public List<ColorRecipe> recipes;
+    public static Recipe.ColorItems GetRandomColor()
+    {
+        int length = Enum.GetValues(typeof(Recipe.ColorItems)).Length;
+        return (Recipe.ColorItems)UnityEngine.Random.Range(0, length);
+    }
 } 
 
 [CustomPropertyDrawer(typeof(Recipe.ColorCount))]

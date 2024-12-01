@@ -86,17 +86,25 @@ public class EnemyWalk : BaseState
     {
         Vector3 destination = isChasing ? target_location.position : 
             Starting_Position + settings.patrolOffset * (pos - 2) * Vector3.right;
-        if(Mathf.Abs(EnemyTransform.position.x - destination.x) < 0.3f)
+        EnemyTransform.position = MoveTowards(destination);
+        if (Mathf.Abs(EnemyTransform.position.x - destination.x) < 0.3f || isOnLedge)
         {
             pos = (pos + 2) % 4;
             ChangePos();
         }
-        else EnemyTransform.position = new Vector2(Vector2.MoveTowards(EnemyTransform.position, destination, settings.patrolSpeed * Time.deltaTime).x, EnemyTransform.position.y);
-        if (Mathf.Abs(EnemyTransform.position.x - Starting_Position.x) > settings.patrolfurthestDistance)
+        if (!enemy.MaxDistanceReached && Mathf.Abs(EnemyTransform.position.x - Starting_Position.x) > settings.patrolfurthestDistance)
         {
             enemy.MaxDistanceReached = true;
             ChangePos();
         }
+    }
+    public bool isOnLedge => !Physics2D.Raycast(settings.ledgePosition.position, Vector2.down, settings.ledgeDistance, settings.layerMask);
+    public Vector2 MoveTowards(Vector3 destination)
+    {
+        float direction = destination.x - EnemyTransform.position.x;
+        if (direction < 0) EnemyTransform.rotation = Quaternion.Euler(0, 180, 0);
+        else EnemyTransform.rotation = Quaternion.Euler(0, 0, 0);
+        return new Vector2(Vector2.MoveTowards(EnemyTransform.position, destination, settings.patrolSpeed * Time.deltaTime).x, EnemyTransform.position.y);
     }
     public void ChangePos()
     {
@@ -123,11 +131,9 @@ public class EnemyAttack : BaseState
     {
         Debug.Log("Attacking");
     }
-
     public override void OnExit()
     {
     }
-
     public override void OnLogic()
     {
         if (AttackSensor.IsInRange)

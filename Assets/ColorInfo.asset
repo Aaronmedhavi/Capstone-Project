@@ -1,0 +1,127 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fa6ba31b3ef82b4191b3928002aad4c, type: 3}
+  m_Name: ColorInfo
+  m_EditorClassIdentifier: 
+  combos:
+  - color: 0
+    projectiles:
+    - Combo_number: 1
+      ProjectilePrefab: {fileID: 4731319089695801953, guid: 6cf1e6d6f110fa348b942aff40d88e53, type: 3}
+      FramesInAnimation: 7
+      ProjectileSpawnFrame: 5
+    - Combo_number: 2
+      ProjectilePrefab: {fileID: 4731319089695801953, guid: 58fb4b0bee912dd46a1b37f1ec5d489b, type: 3}
+      FramesInAnimation: 6
+      ProjectileSpawnFrame: 3
+    - Combo_number: 3
+      ProjectilePrefab: {fileID: 4731319089695801953, guid: f7fc78616fd66a642a2cc0c9723796c7, type: 3}
+      FramesInAnimation: 5
+      ProjectileSpawnFrame: 3
+  - color: 1
+    projectiles:
+    - Combo_number: 1
+      ProjectilePrefab: {fileID: 4731319089695801953, guid: 6cf1e6d6f110fa348b942aff40d88e53, type: 3}
+      FramesInAnimation: 7
+      ProjectileSpawnFrame: 5
+    - Combo_number: 2
+      ProjectilePrefab: {fileID: 4731319089695801953, guid: 58fb4b0bee912dd46a1b37f1ec5d489b, type: 3}
+      FramesInAnimation: 6
+      ProjectileSpawnFrame: 3
+    - Combo_number: 3
+      ProjectilePrefab: {fileID: 4731319089695801953, guid: f7fc78616fd66a642a2cc0c9723796c7, type: 3}
+      FramesInAnimation: 5
+      ProjectileSpawnFrame: 3
+  - color: 2
+    projectiles:
+    - Combo_number: 1
+      ProjectilePrefab: {fileID: 4731319089695801953, guid: 6cf1e6d6f110fa348b942aff40d88e53, type: 3}
+      FramesInAnimation: 7
+      ProjectileSpawnFrame: 5
+    - Combo_number: 2
+      ProjectilePrefab: {fileID: 4731319089695801953, guid: 58fb4b0bee912dd46a1b37f1ec5d489b, type: 3}
+      FramesInAnimation: 6
+      ProjectileSpawnFrame: 3
+    - Combo_number: 3
+      ProjectilePrefab: {fileID: 4731319089695801953, guid: f7fc78616fd66a642a2cc0c9723796c7, type: 3}
+      FramesInAnimation: 5
+      ProjectileSpawnFrame: 3
+  - color: 3
+    projectiles:
+    - Combo_number: 1
+      ProjectilePrefab: {fileID: 4731319089695801953, guid: 6cf1e6d6f110fa348b942aff40d88e53, type: 3}
+      FramesInAnimation: 7
+      ProjectileSpawnFrame: 5
+    - Combo_number: 2
+      ProjectilePrefab: {fileID: 4731319089695801953, guid: 58fb4b0bee912dd46a1b37f1ec5d489b, type: 3}
+      FramesInAnimation: 6
+      ProjectileSpawnFrame: 3
+    - Combo_number: 3
+      ProjectilePrefab: {fileID: 4731319089695801953, guid: f7fc78616fd66a642a2cc0c9723796c7, type: 3}
+      FramesInAnimation: 5
+      ProjectileSpawnFrame: 3
+  - color: 5
+    projectiles:
+    - Combo_number: 1
+      ProjectilePrefab: {fileID: 4731319089695801953, guid: 6cf1e6d6f110fa348b942aff40d88e53, type: 3}
+      FramesInAnimation: 7
+      ProjectileSpawnFrame: 5
+    - Combo_number: 2
+      ProjectilePrefab: {fileID: 4731319089695801953, guid: 58fb4b0bee912dd46a1b37f1ec5d489b, type: 3}
+      FramesInAnimation: 6
+      ProjectileSpawnFrame: 3
+    - Combo_number: 3
+      ProjectilePrefab: {fileID: 4731319089695801953, guid: f7fc78616fd66a642a2cc0c9723796c7, type: 3}
+      FramesInAnimation: 5
+      ProjectileSpawnFrame: 3
+  - color: 6
+    projectiles:
+    - Combo_number: 1
+      ProjectilePrefab: {fileID: 4731319089695801953, guid: 6cf1e6d6f110fa348b942aff40d88e53, type: 3}
+      FramesInAnimation: 7
+      ProjectileSpawnFrame: 5
+    - Combo_number: 2
+      ProjectilePrefab: {fileID: 4731319089695801953, guid: 58fb4b0bee912dd46a1b37f1ec5d489b, type: 3}
+      FramesInAnimation: 6
+      ProjectileSpawnFrame: 3
+    - Combo_number: 3
+      ProjectilePrefab: {fileID: 4731319089695801953, guid: f7fc78616fd66a642a2cc0c9723796c7, type: 3}
+      FramesInAnimation: 5
+      ProjectileSpawnFrame: 3
+  - color: 4
+    projectiles:
+    - Combo_number: 1
+      ProjectilePrefab: {fileID: 4731319089695801953, guid: f7fc78616fd66a642a2cc0c9723796c7, type: 3}
+      FramesInAnimation: 5
+      ProjectileSpawnFrame: 3
+    - Combo_number: 2
+      ProjectilePrefab: {fileID: 4731319089695801953, guid: 58fb4b0bee912dd46a1b37f1ec5d489b, type: 3}
+      FramesInAnimation: 6
+      ProjectileSpawnFrame: 3
+    - Combo_number: 3
+      ProjectilePrefab: {fileID: 4731319089695801953, guid: 6cf1e6d6f110fa348b942aff40d88e53, type: 3}
+      FramesInAnimation: 7
+      ProjectileSpawnFrame: 5
+  SetAll:
+  - Combo_number: 1
+    ProjectilePrefab: {fileID: 4731319089695801953, guid: 6cf1e6d6f110fa348b942aff40d88e53, type: 3}
+    FramesInAnimation: 7
+    ProjectileSpawnFrame: 5
+  - Combo_number: 2
+    ProjectilePrefab: {fileID: 4731319089695801953, guid: 58fb4b0bee912dd46a1b37f1ec5d489b, type: 3}
+    FramesInAnimation: 6
+    ProjectileSpawnFrame: 3
+  - Combo_number: 3
+    ProjectilePrefab: {fileID: 4731319089695801953, guid: f7fc78616fd66a642a2cc0c9723796c7, type: 3}
+    FramesInAnimation: 5
+    ProjectileSpawnFrame: 3
+  TurnOn: 0

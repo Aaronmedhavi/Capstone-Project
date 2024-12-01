@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System;
 using UnityEditorInternal;
 using UnityEngine.Timeline;
+using UnityEditor;
 
 public interface IEntity
 {
     public void OnDeath();
     public void OnReceiveDamage(float value, Transform origin = null);
 }
+
 public class Player : MonoBehaviour, IEntity
 {
     public enum State
@@ -18,6 +20,8 @@ public class Player : MonoBehaviour, IEntity
         onAir,
         onHit
     }
+
+    [SerializeField] private ColorInfo info;
 
     [Header("Player Stats")]
     [SerializeField] private float Health;
@@ -36,6 +40,16 @@ public class Player : MonoBehaviour, IEntity
     private PlayerControl input;
     readonly StateMachine<State> SM = new();
     public StateMachine<State> StateMachine => SM;
+    private Recipe.ColorItems color
+    {
+        set
+        {
+            Color_ = value;
+            playerCombat.ChangeProjectiles(info.GetColor(value).projectiles); 
+        }
+    }
+    public Recipe.ColorItems Color_;
+
     private void OnEnable()
     {
         input.Player.Enable();
@@ -71,12 +85,13 @@ public class Player : MonoBehaviour, IEntity
         input.Player.Jump.canceled += playerMovement.Jump_Canceled;
         input.Player.Attack.performed += (x) =>
         {
-            if (IsGrounded) playerCombat.Attack();
+            if (IsGrounded && !playerMovement.isDashing) playerCombat.Attack();
         };
+        input.Player.Dash.performed += (x) => playerMovement.Dash(InputValue);
     }
     private void Update()
     {
-        playerMovement.Move(InputValue.x * (playerCombat.isAttacking == null ? 1 : 0));
+        if(playerCombat.isAttacking == null && !playerMovement.isDashing) playerMovement.Move(InputValue.x);
         if (InputValue.y < 0) platformHandler.GoDown();
         SM.OnLogic();
     }
@@ -96,6 +111,7 @@ public class Player : MonoBehaviour, IEntity
             SM.ChangeState(State.onHit, 1);
         }
     }
+    public void ChangeColor(Recipe.ColorItems color) => this.color = color;
     public Vector2 InputValue => input.Player.Movement.ReadValue<Vector2>();
     public float LedgeTime => groundSensor.LedgeTime;
     public bool IsGrounded { get => groundSensor.IsGrounded; }
