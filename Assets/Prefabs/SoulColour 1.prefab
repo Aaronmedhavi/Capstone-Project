@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 9114147558886625247}
   - component: {fileID: 2143101509488282485}
   m_Layer: 0
-  m_Name: SoulColour
+  m_Name: SoulColour 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
