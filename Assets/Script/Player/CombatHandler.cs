@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
+<<<<<<< Updated upstream
 using UnityEngine.Pool;
 
+=======
+>>>>>>> Stashed changes
 public enum ColorItems { red, yellow, green, blue, purple, orange, brown }
 //Red = api
 //1. fireball kecil
@@ -73,13 +75,14 @@ public class CombatHandler : MonoBehaviour
             float time = Projectile.ProjectileSpawnFrame / Projectile.FramesInAnimation;
             yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime > time);
             var projectile = ObjectPoolManager.GetObject(Projectile.ProjectilePrefab, false, ObjectPoolManager.PooledInfo.GameObject).GetComponent<Projectile>();
-            projectile.transform.position = transform.position + transform.right * 1;
-            projectile.direction = transform.right;
+            projectile.transform.SetPositionAndRotation(transform.position + transform.right * 1, transform.rotation);
             projectile.gameObject.SetActive(true);
-
-            //Projectile logicnya blm
         }
+<<<<<<< Updated upstream
         yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1);
+=======
+        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1);
+>>>>>>> Stashed changes
         time = Time.time + ComboInterval;
         isAttacking = null;
     }

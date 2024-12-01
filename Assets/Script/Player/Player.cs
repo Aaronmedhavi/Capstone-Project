@@ -7,8 +7,10 @@ using UnityEditor;
 
 public interface IEntity
 {
+    public enum type { Player, Enemy, None}
+    public type Type { get;}
     public void OnDeath();
-    public void OnReceiveDamage(float value, Transform origin = null);
+    public void OnReceiveDamage(float value, float InvisDuration = -1, Transform origin = null);
 }
 
 public class Player : MonoBehaviour, IEntity
@@ -21,8 +23,12 @@ public class Player : MonoBehaviour, IEntity
         onHit
     }
 
+<<<<<<< Updated upstream
     [SerializeField] private ColorInfo info;
 
+=======
+    [SerializeField] private IEntity.type type;
+>>>>>>> Stashed changes
     [Header("Player Stats")]
     [SerializeField] private float Health;
     [SerializeField] private float KnockbackMagnitude;
@@ -100,7 +106,7 @@ public class Player : MonoBehaviour, IEntity
         //animator.SetBool("Dead", true);
         //GameManager.instance.GameOver();
     }
-    public void OnReceiveDamage(float value, Transform origin = null)
+    public void OnReceiveDamage(float value, float InvisDuration = -1, Transform origin = null)
     {
         if (value == 0) return;
         Health -= value;
@@ -111,9 +117,14 @@ public class Player : MonoBehaviour, IEntity
             SM.ChangeState(State.onHit, 1);
         }
     }
+<<<<<<< Updated upstream
     public void ChangeColor(Recipe.ColorItems color) => this.color = color;
+=======
+
+>>>>>>> Stashed changes
     public Vector2 InputValue => input.Player.Movement.ReadValue<Vector2>();
     public float LedgeTime => groundSensor.LedgeTime;
     public bool IsGrounded { get => groundSensor.IsGrounded; }
+    public IEntity.type Type { get => type;}
 }
 
