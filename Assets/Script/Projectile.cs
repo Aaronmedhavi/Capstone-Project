@@ -3,82 +3,69 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public abstract class Projectile : MonoBehaviour
 {
     [SerializeField] protected float Damage;
     [SerializeField] protected float EnemyInvisDuration = -1; //ini sengaja biar kalo mau ada yang bredet, ini bredet
-    protected IEntity.type type;
-    public virtual void SetType(IEntity.type type)
-    {
-        this.type = type;
-    }
+    public abstract void SetLayer(LayerMask layer);
+    public abstract void ParticleLogic(GameObject other);
     public void Release() => ObjectPoolManager.ReleaseObject(gameObject);
 }
+public abstract class ProjectileObject : Projectile
+{
+    [SerializeField] protected Collider2D col;
+    [SerializeField] protected float projectileSpeed;
+    [SerializeField] protected float lifeTime;
 
-public class ProjectileParticle : Projectile
+    private float time;
+    public override void SetLayer(LayerMask layer)
+    {
+        col.isTrigger = true;
+        col.includeLayers = layer;
+        col.excludeLayers = ~layer;
+        col.contactCaptureLayers = layer;
+        col.callbackLayers = layer;
+    }
+    public void OnEnable()
+    {
+        time = Time.time + lifeTime;
+    }
+    public virtual void Update()
+    {
+        if (time < Time.time) Release();
+    }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        ParticleLogic(collision.gameObject);
+    }
+}
+public abstract class ProjectileParticle : Projectile
 {
     [SerializeField] protected ParticleSystem particle;
     public void OnEnable()
     {
         particle.Play();
     }
+    public override void SetLayer(LayerMask layer)
+    {
+        var collider = particle.collision;
+        collider.collidesWith = ~layer;
+        collider.sendCollisionMessages = true;
+        var main = particle.main;
+        main.stopAction = ParticleSystemStopAction.Callback;
+    }
+    public void Stop()
+    {
+        particle.Stop();
+        Release();
+    }
+    private void OnParticleSystemStopped()
+    {
+        Debug.Log("STOPPED");
+        Release();
+    }
+    private void OnParticleCollision(GameObject other)
+    {
+        ParticleLogic(other);
+    }
 }
-//public class Projectile : MonoBehaviour
-//{
-//    [Space(3)]
-//    [Header("Projectile Settings")]
-//    [SerializeField] protected float projectileSpeed;
-//    [SerializeField] protected float lifeTime;
-
-
-//    Rigidbody2D rb;
-//    float time;
-//    public virtual void Awake()
-//    {
-//        rb = GetComponent<Rigidbody2D>();
-//    }
-//    public virtual void OnEnable()
-//    {
-//        Debug.Log("Start");
-//        rb.velocity = direction * projectileSpeed;
-//        time = Time.time + lifeTime;
-//        //yield return new WaitForSeconds(lifeTime);
-//    }
-//    public virtual void Update()
-//    {
-//        if(time < Time.time)
-//        {
-//            Release();
-//        }
-//    }
-//    public virtual void OnCollisionEnter2D(Collision2D col)
-//    {
-//        Release();
-//    }
-//    public void Release() => ObjectPoolManager.ReleaseObject(gameObject);
-//}
-
-//[RequireComponent(typeof(Rigidbody2D))]
-//public class Projectile : MonoBehaviour
-//{
-//    //public Action<Projectile> OnRelease;
-
-//    //public float speed;
-//    //public float time;
-//    //public Vector3 direction;
-//    //Rigidbody2D rb;
-//    //private void Awake()
-//    //{
-//    //    rb = GetComponent<Rigidbody2D>();
-//    //}
-//    //private IEnumerator Start()
-//    //{
-//    //    rb.velocity = direction * speed;
-//    //    yield return new WaitForSeconds(time);
-//    //    OnRelease?.Invoke(this);
-//    //}
-//    //void OnCollisionEnter2D(Collider2D col)
-//    //{
-//    //    OnRelease?.Invoke(this);
-//    //}
-//}

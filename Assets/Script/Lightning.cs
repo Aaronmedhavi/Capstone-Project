@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 public class Lightning : ProjectileParticle
 {
-    private void OnParticleCollision(GameObject other)
+    public override void ParticleLogic(GameObject other)
     {
         Debug.Log("a");
-        other.GetComponent<IEntity>().OnReceiveDamage(Damage,EnemyInvisDuration);
-        particle.Stop();
+        if(other.TryGetComponent<IEntity>(out var hit))
+        {
+            hit.OnReceiveDamage(Damage, EnemyInvisDuration);
+        }
+        Stop();
     }
 }

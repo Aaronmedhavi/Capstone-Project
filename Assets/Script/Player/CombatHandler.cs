@@ -2,39 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-<<<<<<< Updated upstream
-using UnityEngine.Pool;
-
-=======
->>>>>>> Stashed changes
 public enum ColorItems { red, yellow, green, blue, purple, orange, brown }
-//Red = api
-//1. fireball kecil
-//2. fireball kecil
-//3. Ring of fire (Seeking)
-
-//Yellow = petir
-//1. 
-//2. 
-//3. 
-
-//Biru = air
-//1. 
-//2. 
-//3. 
-
-//Hijau = daun akar2
-//1. 
-//2. 
-//3. 
-
-//Ungu = poison
-//1. 
-//2. 
-//3. 
-
-//Orange = fist
-//Coklat = Tanah
 public enum Attack_Type { melee, projectile }
 [Serializable]
 public struct ProjectileCombo
@@ -53,10 +21,12 @@ public class CombatHandler : MonoBehaviour
     [SerializeField] private float ComboInterval;
     [SerializeField] private Animator animator;
     public Coroutine isAttacking { get; private set; }
+    LayerMask layer = default;
 
-    public void ChangeProjectiles(List<ProjectileCombo> projectiles)
+    public void ChangeProjectiles(List<ProjectileCombo> projectiles, LayerMask layer_type = default)
     {
         this.projectiles = projectiles;
+        layer = layer_type;
     }
     float time = 0;
     int index = 0;
@@ -76,13 +46,10 @@ public class CombatHandler : MonoBehaviour
             yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime > time);
             var projectile = ObjectPoolManager.GetObject(Projectile.ProjectilePrefab, false, ObjectPoolManager.PooledInfo.GameObject).GetComponent<Projectile>();
             projectile.transform.SetPositionAndRotation(transform.position + transform.right * 1, transform.rotation);
+            projectile.SetLayer(layer);
             projectile.gameObject.SetActive(true);
         }
-<<<<<<< Updated upstream
-        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1);
-=======
         yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1);
->>>>>>> Stashed changes
         time = Time.time + ComboInterval;
         isAttacking = null;
     }

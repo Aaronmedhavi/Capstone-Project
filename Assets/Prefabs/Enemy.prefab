@@ -659,6 +659,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: {fileID: 11400000, guid: f203e13a815c2664885e36bd2be62b8b, type: 2}
+  layer:
+    serializedVersion: 2
+    m_Bits: 0
   m_idleSettings:
     maxIdleTime: 2.5
     maxDistanceIdleTime: 2

@@ -5,10 +5,11 @@ using UnityEngine;
 public class Enemy : MonoBehaviour, IEntity
 {
     [SerializeField] private ColorInfo info;
+    [SerializeField] private LayerMask layer;
     private Recipe.ColorItems color;
     public void SetColor(Recipe.ColorItems color)
     {
-        m_combatHandler.ChangeProjectiles(info.GetColor(color).projectiles);
+        m_combatHandler.ChangeProjectiles(info.GetColor(color).projectiles, layer);
     }
     [Header("Enemy Settings")]
 
@@ -42,14 +43,8 @@ public class Enemy : MonoBehaviour, IEntity
     }
     private StateMachine<State> SM = new();
     public StateMachine<State> StateMachine => SM;
-<<<<<<< Updated upstream
+
     private void Start()
-=======
-
-    public IEntity.type Type => throw new NotImplementedException();
-
-    private void Awake()
->>>>>>> Stashed changes
     {
         m_alertHandler.enemy = this;
         m_alertHandler.viewSettings = m_viewSettings;
