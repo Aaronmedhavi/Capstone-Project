@@ -7,6 +7,7 @@ using UnityEditor;
 
 public interface IEntity
 {
+    public bool isAlive { get; }
     public void OnDeath();
     public void OnReceiveDamage(float value, float InvisDuration = -1, Transform origin = null);
 }
@@ -117,4 +118,6 @@ public class Player : MonoBehaviour, IEntity
     public Vector2 InputValue => input.Player.Movement.ReadValue<Vector2>();
     public float LedgeTime => groundSensor.LedgeTime;
     public bool IsGrounded { get => groundSensor.IsGrounded; }
+
+    public bool isAlive => true;
 }

@@ -130,7 +130,7 @@ public class PlayerMovement : MonoBehaviour
         //transform.localScale = new Vector3(Mathf.Sign(direction), 1, 1);
         if (direction > 0.01)
         {
-            Animator.SetFloat("Direction", direction);
+            Animator.SetFloat("distance", direction);
         }
         Animator.SetFloat("Speed", Rb.velocity.magnitude / Walking_Speed);
     }

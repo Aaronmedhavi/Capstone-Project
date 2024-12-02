@@ -7,6 +7,7 @@ public abstract class Projectile : MonoBehaviour
 {
     [SerializeField] protected float Damage;
     [SerializeField] protected float EnemyInvisDuration = -1; //ini sengaja biar kalo mau ada yang bredet, ini bredet
+    protected LayerMask layer;
     public abstract void SetLayer(LayerMask layer);
     public abstract void ParticleLogic(GameObject other);
     public void Release() => ObjectPoolManager.ReleaseObject(gameObject);
@@ -20,13 +21,14 @@ public abstract class ProjectileObject : Projectile
     private float time;
     public override void SetLayer(LayerMask layer)
     {
+        this.layer = layer;
         col.isTrigger = true;
         col.includeLayers = layer;
         col.excludeLayers = ~layer;
         col.contactCaptureLayers = layer;
         col.callbackLayers = layer;
     }
-    public void OnEnable()
+    public virtual void OnEnable()
     {
         time = Time.time + lifeTime;
     }
@@ -39,6 +41,16 @@ public abstract class ProjectileObject : Projectile
         ParticleLogic(collision.gameObject);
     }
 }
+public class DamagePerParticle : ProjectileParticle
+{
+    public override void ParticleLogic(GameObject other)
+    {
+        if(other.TryGetComponent(out IEntity entity))
+        {
+            entity.OnReceiveDamage(Damage, EnemyInvisDuration);
+        }
+    }
+}
 public abstract class ProjectileParticle : Projectile
 {
     [SerializeField] protected ParticleSystem particle;
@@ -48,6 +60,7 @@ public abstract class ProjectileParticle : Projectile
     }
     public override void SetLayer(LayerMask layer)
     {
+        this.layer = layer;
         var collider = particle.collision;
         collider.collidesWith = ~layer;
         collider.sendCollisionMessages = true;
@@ -61,7 +74,6 @@ public abstract class ProjectileParticle : Projectile
     }
     private void OnParticleSystemStopped()
     {
-        Debug.Log("STOPPED");
         Release();
     }
     private void OnParticleCollision(GameObject other)

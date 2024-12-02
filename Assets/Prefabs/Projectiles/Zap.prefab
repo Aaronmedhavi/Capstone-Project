@@ -3685,7 +3685,7 @@ ParticleSystem:
     m_Bounce:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -4845,7 +4845,9 @@ MonoBehaviour:
   Damage: 0
   EnemyInvisDuration: -1
   particle: {fileID: 8962498519297036624}
-  chain: 0
-  distance: 0
+  chain: 3
+  distance: 10
+  dmgMultiplierEachChain: 0.75
+  chainProjectile: {fileID: 264593797222231889}
   effectObject: {fileID: 5855611402146078236, guid: aa3c219eca644e14da4bfeb7aa976dde, type: 3}
   hits: []

@@ -44,6 +44,8 @@ public class Enemy : MonoBehaviour, IEntity
     private StateMachine<State> SM = new();
     public StateMachine<State> StateMachine => SM;
 
+    public bool isAlive => true;
+
     private void Start()
     {
         m_alertHandler.enemy = this;
