@@ -72,15 +72,15 @@ MonoBehaviour:
   - color: 5
     projectiles:
     - Combo_number: 1
-      ProjectilePrefab: {fileID: 4731319089695801953, guid: 6cf1e6d6f110fa348b942aff40d88e53, type: 3}
+      ProjectilePrefab: {fileID: 4832724454346457137, guid: 1029ebcf383ea1e4ea64efab6ab041c3, type: 3}
       FramesInAnimation: 7
       ProjectileSpawnFrame: 5
     - Combo_number: 2
-      ProjectilePrefab: {fileID: 4731319089695801953, guid: 58fb4b0bee912dd46a1b37f1ec5d489b, type: 3}
+      ProjectilePrefab: {fileID: 97047216886634679, guid: d2d561f6b444fe4478fd6027825f6a9a, type: 3}
       FramesInAnimation: 6
       ProjectileSpawnFrame: 3
     - Combo_number: 3
-      ProjectilePrefab: {fileID: 4731319089695801953, guid: f7fc78616fd66a642a2cc0c9723796c7, type: 3}
+      ProjectilePrefab: {fileID: 5213567246339432255, guid: 4bc2e8bc6b9c92346903ccdf537c5df8, type: 3}
       FramesInAnimation: 5
       ProjectileSpawnFrame: 3
   - color: 6

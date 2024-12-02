@@ -128,10 +128,6 @@ public class PlayerMovement : MonoBehaviour
             else transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         //transform.localScale = new Vector3(Mathf.Sign(direction), 1, 1);
-        if (direction > 0.01)
-        {
-            Animator.SetFloat("distance", direction);
-        }
         Animator.SetFloat("Speed", Rb.velocity.magnitude / Walking_Speed);
     }
 }

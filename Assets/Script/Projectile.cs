@@ -7,10 +7,11 @@ public abstract class Projectile : MonoBehaviour
 {
     [SerializeField] protected float Damage;
     [SerializeField] protected float EnemyInvisDuration = -1; //ini sengaja biar kalo mau ada yang bredet, ini bredet
+    protected GameObject thisObject;
     protected LayerMask layer;
-    public abstract void SetLayer(LayerMask layer);
+    public abstract void SetLayer(LayerMask layer, GameObject obj);
     public abstract void ParticleLogic(GameObject other);
-    public void Release() => ObjectPoolManager.ReleaseObject(gameObject);
+    public void Release() => ObjectPoolManager.ReleaseObject(thisObject);
 }
 public abstract class ProjectileObject : Projectile
 {
@@ -19,8 +20,9 @@ public abstract class ProjectileObject : Projectile
     [SerializeField] protected float lifeTime;
 
     private float time;
-    public override void SetLayer(LayerMask layer)
+    public override void SetLayer(LayerMask layer, GameObject obj)
     {
+        thisObject = obj;
         this.layer = layer;
         col.isTrigger = true;
         col.includeLayers = layer;
@@ -58,8 +60,9 @@ public abstract class ProjectileParticle : Projectile
     {
         particle.Play();
     }
-    public override void SetLayer(LayerMask layer)
+    public override void SetLayer(LayerMask layer, GameObject obj)
     {
+        thisObject = obj;
         this.layer = layer;
         var collider = particle.collision;
         collider.collidesWith = ~layer;

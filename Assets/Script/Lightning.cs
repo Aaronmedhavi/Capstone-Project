@@ -40,7 +40,7 @@ public class Lightning : ProjectileParticle
                     chainEffect.transform.SetPositionAndRotation(other.transform.position + transform.right * 2,transform.rotation);
                     var lightning = chainEffect.GetComponent<Lightning>();
                     lightning.SetValue(chain - 1, Damage * dmgMultiplierEachChain, hits);
-                    lightning.SetLayer(layer);
+                    lightning.SetLayer(layer, thisObject);
 
                     chainEffect.SetActive(true);
                 }

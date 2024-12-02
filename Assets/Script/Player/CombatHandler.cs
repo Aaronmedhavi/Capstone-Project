@@ -44,10 +44,13 @@ public class CombatHandler : MonoBehaviour
         {
             float time = Projectile.ProjectileSpawnFrame / Projectile.FramesInAnimation;
             yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime > time);
-            var projectile = ObjectPoolManager.GetObject(Projectile.ProjectilePrefab, false, ObjectPoolManager.PooledInfo.GameObject).GetComponent<Projectile>();
-            projectile.transform.SetPositionAndRotation(transform.position + transform.right * 1, transform.rotation);
-            projectile.SetLayer(layer);
-            projectile.gameObject.SetActive(true);
+            var obj = ObjectPoolManager.GetObject(Projectile.ProjectilePrefab, false, ObjectPoolManager.PooledInfo.GameObject);
+            var projectile = obj.GetComponent<Projectile>();
+            projectile ??= obj.GetComponentInChildren<Projectile>();
+            projectile.SetLayer(layer, obj);
+
+            obj.transform.SetPositionAndRotation(transform.position + transform.right * 1, transform.rotation);
+            obj.SetActive(true);
         }
         yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1);
         time = Time.time + ComboInterval;

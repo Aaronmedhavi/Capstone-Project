@@ -1251,7 +1251,7 @@ MonoBehaviour:
   playerCombat: {fileID: 876253838}
   platformHandler: {fileID: 967833795}
   groundSensor: {fileID: 1488261003}
-  Color_: 4
+  Color_: 5
 --- !u!4 &876253841
 Transform:
   m_ObjectHideFlags: 0
