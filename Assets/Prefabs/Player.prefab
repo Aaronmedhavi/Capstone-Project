@@ -116,7 +116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5148509010700678271
 Transform:
   m_ObjectHideFlags: 0
@@ -148,14 +148,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28934b7f55f9f9a4b8f74c2d78e3f06a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 47eddf699df15864fac589e03a772055, type: 2}
   info: {fileID: 11400000, guid: f203e13a815c2664885e36bd2be62b8b, type: 2}
+  layer_type:
+    serializedVersion: 2
+    m_Bits: 577
   Health: 5
+  DefaultInvisibleCooldown: 0
+  ProjectileCooldown: 0
+  SkillCooldown: 0
   KnockbackMagnitude: 3
   playerMovement: {fileID: 7471012533971421975}
   playerCombat: {fileID: 699944065340664708}
   platformHandler: {fileID: 931743647393311763}
   groundSensor: {fileID: 3552794173077279550}
-  Color_: 0
+  Color_: 5
 --- !u!114 &7471012533971421975
 MonoBehaviour:
   m_ObjectHideFlags: 0

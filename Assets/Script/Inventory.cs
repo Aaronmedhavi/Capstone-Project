@@ -41,7 +41,7 @@ public class Inventory : MonoBehaviour
             var availableRecipe = recipe.recipes.Find(x => IsSame(x.colors, colors));
             if (availableRecipe != null)
             {
-                player.ChangeColor(availableRecipe.result);
+                player.SetColor(availableRecipe.result);
             }
             else if (colors.Count > 0)
             {
@@ -59,7 +59,7 @@ public class Inventory : MonoBehaviour
                     }
                 }
                 int rand = UnityEngine.Random.Range(0, dominantColor.Count);
-                player.ChangeColor(dominantColor[rand].color);
+                player.SetColor(dominantColor[rand].color);
             }
             dominantColor.Clear();
             colors.Clear();
@@ -73,7 +73,6 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             var ToCompare = item2.Find(x => x.color == item1[i].color);
-            Debug.Log($"{ToCompare.count} != {item1[i].count}");
             if (ToCompare == null || item1[i].count != ToCompare.count) return false;
         }
         return true;

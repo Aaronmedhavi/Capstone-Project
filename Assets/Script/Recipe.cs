@@ -26,8 +26,8 @@ public class Recipe : ScriptableObject
         int length = Enum.GetValues(typeof(Recipe.ColorItems)).Length;
         return (Recipe.ColorItems)UnityEngine.Random.Range(0, length);
     }
-} 
-
+}
+#if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(Recipe.ColorCount))]
 public class ColorCountDrawer : PropertyDrawer
 {
@@ -47,3 +47,4 @@ public class ColorCountDrawer : PropertyDrawer
         EditorGUI.PropertyField(countRect, countProp, GUIContent.none);
     }
 }
+#endif

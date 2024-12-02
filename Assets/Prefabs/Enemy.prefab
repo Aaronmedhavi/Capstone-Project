@@ -653,15 +653,19 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7578317371674296938}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc48ada8b7772cf47941a6a91706a941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 47eddf699df15864fac589e03a772055, type: 2}
   info: {fileID: 11400000, guid: f203e13a815c2664885e36bd2be62b8b, type: 2}
   layer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
+  Health: 5
+  DefaultInvisibleCooldown: 0
+  DropChance: 0
   m_idleSettings:
     maxIdleTime: 2.5
     maxDistanceIdleTime: 2

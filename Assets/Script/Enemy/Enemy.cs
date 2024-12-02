@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IEntity
 {
+    [SerializeField] ColorData data;
     [SerializeField] private ColorInfo info;
     [SerializeField] private LayerMask layer;
-    private Recipe.ColorItems color;
-    public void SetColor(Recipe.ColorItems color)
-    {
-        m_combatHandler.ChangeProjectiles(info.GetColor(color).projectiles, layer);
-    }
-    [Header("Enemy Settings")]
 
+    [Header("Enemy Settings")]
+    [SerializeField] private float Health;
+    [SerializeField] private float DefaultInvisibleCooldown;
+    [SerializeField] private float DropChance;
 
     [Header("State Settings")]
     [SerializeField] private IdleSettings m_idleSettings;
@@ -32,7 +31,19 @@ public class Enemy : MonoBehaviour, IEntity
   
     [NonSerialized] public bool MaxDistanceReached;
     [NonSerialized] public bool wasChasing;
-
+    private Recipe.ColorItems color;
+    private SpriteRenderer _sr;
+    private float _Health
+    {
+        get => Health;
+        set
+        {
+            Health = value;
+            if (Health <= 0) OnDeath();
+        }
+    }
+    private bool isInvisible => InvisCooldown > Time.time;
+    private float InvisCooldown;
     public RangeSensor ChaseSensor => chaseSensor;
     public enum State
     {
@@ -44,8 +55,11 @@ public class Enemy : MonoBehaviour, IEntity
     private StateMachine<State> SM = new();
     public StateMachine<State> StateMachine => SM;
 
-    public bool isAlive => true;
-
+    public bool IsAlive => true;
+    private void Awake()
+    {
+        _sr = GetComponent<SpriteRenderer>();
+    }
     private void Start()
     {
         m_alertHandler.enemy = this;
@@ -80,9 +94,20 @@ public class Enemy : MonoBehaviour, IEntity
     public void OnChaseRange() => SM.ChangeState(State.Walk);
     public void OnDeath()
     {
+        DropManager.instance.DropColor(DropChance, color, transform.position);
+        ObjectPoolManager.ReleaseObject(gameObject);
     }
-    public void OnReceiveDamage(float value, float InvisDuration = -1,Transform origin = null)
+    public void OnReceiveDamage(float value, float InvisDuration = -1, Transform origin = null)
     {
+        if (value == 0 || isInvisible) return;
+        InvisCooldown = (InvisDuration != -1 ? InvisDuration : DefaultInvisibleCooldown) + Time.time;
+        _Health -= value;
+    }
+    public void SetColor(Recipe.ColorItems color)
+    {
+        this.color = color;
+        m_combatHandler.ChangeProjectiles(info.GetColor(color).projectiles, layer);
+        _sr.color = data.GetColor(color);
     }
 
     [Serializable]

@@ -7,9 +7,9 @@ public class UIManager : MonoBehaviour
 {
     public GameObject settingsPanel;
     public GameObject mainPanel;
-    public void PlayGame()
+    public void PlayGame(string name)
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(name);
     }
 
     public void OpenSettings()

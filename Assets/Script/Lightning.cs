@@ -29,10 +29,10 @@ public class Lightning : ProjectileParticle
             var effect = ObjectPoolManager.GetObject(effectObject, false, ObjectPoolManager.PooledInfo.Particle);
             effect.transform.position = other.transform.position;
             effect.SetActive(true);
-            if (chain > 0 && hit.isAlive)
+            if (chain > 0 && hit.IsAlive)
             {
                 var ray = Physics2D.Raycast(other.transform.position + transform.right * 2, transform.right, distance, ~layer);
-                if (ray && ray.collider.TryGetComponent<IEntity>(out var enty) && enty.isAlive)
+                if (ray && ray.collider.TryGetComponent<IEntity>(out var enty) && enty.IsAlive)
                 {
                     Debug.Log("chain");
                     hits.Add(other.transform);

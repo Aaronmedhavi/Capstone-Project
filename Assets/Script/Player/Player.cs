@@ -1,13 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System;
-using UnityEditorInternal;
-using UnityEngine.Timeline;
-using UnityEditor;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public interface IEntity
 {
-    public bool isAlive { get; }
+    public bool IsAlive { get; }
     public void OnDeath();
     public void OnReceiveDamage(float value, float InvisDuration = -1, Transform origin = null);
 }
@@ -22,11 +19,15 @@ public class Player : MonoBehaviour, IEntity
         onHit
     }
 
+    [SerializeField] ColorData data;
     [SerializeField] private ColorInfo info;
     [SerializeField] private LayerMask layer_type;
 
     [Header("Player Stats")]
     [SerializeField] private float Health;
+    [SerializeField] private float DefaultInvisibleCooldown;
+    [SerializeField] private float ProjectileCooldown;
+    [SerializeField] private float SkillCooldown;
     [SerializeField] private float KnockbackMagnitude;
 
     [Header("Player Settings")]
@@ -38,20 +39,34 @@ public class Player : MonoBehaviour, IEntity
     [SerializeField] private GroundSensor groundSensor;
     public Rigidbody2D rb2d { get; private set; }
     public Animator animator { get; private set; }
+    private SpriteRenderer _sr;
 
-    private PlayerControl input;
-    readonly StateMachine<State> SM = new();
-    public StateMachine<State> StateMachine => SM;
-    private Recipe.ColorItems color
+    private float _Health
     {
+        get => Health; 
         set
         {
-            Color_ = value;
-            playerCombat.ChangeProjectiles(info.GetColor(value).projectiles, layer_type); 
+            Health = value;
+            if (Health <= 0) OnDeath();
         }
     }
+    private bool isInvisible => InvisCooldown > Time.time;
+    public Vector2 InputValue => input.Player.Movement.ReadValue<Vector2>();
+    public float LedgeTime => groundSensor.LedgeTime;
+    public bool IsGrounded { get => groundSensor.IsGrounded; }
+    public bool IsAlive => true;
+    public void SetColor(Recipe.ColorItems color)
+    {
+        Color_ = color;
+        playerCombat.ChangeProjectiles(info.GetColor(color).projectiles, layer_type);
+        _sr.color = data.GetColor(color);
+    }
     public Recipe.ColorItems Color_;
+    readonly StateMachine<State> SM = new();
+    public StateMachine<State> StateMachine => SM;
 
+    private float InvisCooldown;
+    private PlayerControl input;
     private void OnEnable()
     {
         input.Player.Enable();
@@ -62,10 +77,11 @@ public class Player : MonoBehaviour, IEntity
     }
     private void Awake()
     {
-        color = Color_;
         input = new();
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        _sr = GetComponent<SpriteRenderer>();
+        SetColor(Color_);
 
         //GameManager.input = input;
         playerMovement.player = this;
@@ -100,24 +116,17 @@ public class Player : MonoBehaviour, IEntity
     }
     public void OnDeath()
     {
-        //animator.SetBool("Dead", true);
-        //GameManager.instance.GameOver();
+        ObjectPoolManager.ReleaseObject(gameObject);
     }
     public void OnReceiveDamage(float value, float InvisDuration = -1, Transform origin = null)
     {
-        if (value == 0) return;
-        Health -= value;
-        if (Health <= 0) OnDeath();
-        else
+        if (value == 0 || isInvisible) return;
+        InvisCooldown = (InvisDuration != -1 ? InvisDuration : DefaultInvisibleCooldown) + Time.time;
+        _Health -= value;
+        if (Health > 0 && origin != null)
         {
             rb2d.AddForce(origin.right * KnockbackMagnitude, ForceMode2D.Impulse);
             SM.ChangeState(State.onHit, 1);
         }
     }
-    public void ChangeColor(Recipe.ColorItems color) => this.color = color;
-    public Vector2 InputValue => input.Player.Movement.ReadValue<Vector2>();
-    public float LedgeTime => groundSensor.LedgeTime;
-    public bool IsGrounded { get => groundSensor.IsGrounded; }
-
-    public bool isAlive => true;
 }

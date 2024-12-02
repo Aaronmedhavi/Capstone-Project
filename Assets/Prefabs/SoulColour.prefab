@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2143101509488282485}
   - component: {fileID: 4258172925474855156}
   - component: {fileID: 456404510174600140}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: SoulColour
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeb5e4f8f1dc15a4c844673b93b8621e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 11400000, guid: 47eddf699df15864fac589e03a772055, type: 2}
+  particle: {fileID: 5313066146120282729}
   Color: 0
+  retainElement: 0
 --- !u!1 &9212791365329830012
 GameObject:
   m_ObjectHideFlags: 0
