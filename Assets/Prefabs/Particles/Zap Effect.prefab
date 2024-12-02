@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6583969143194539901}
   - component: {fileID: 2542971274901527725}
   - component: {fileID: 1647579062316718196}
+  - component: {fileID: -3048825537889426943}
   m_Layer: 0
   m_Name: Zap Effect
   m_TagString: Untagged
@@ -48,7 +49,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -4887,3 +4888,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-3048825537889426943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5855611402146078236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1eec96a3f3d4c44b7e644dfa97f5c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 0
+  EnemyInvisDuration: -1
+  particle: {fileID: 2542971274901527725}

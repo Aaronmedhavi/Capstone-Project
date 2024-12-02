@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6186315786118013208}
   - component: {fileID: 5751500327796235620}
   - component: {fileID: 5702507334889759912}
+  - component: {fileID: 315849095926562392}
   m_Layer: 0
   m_Name: Fire Spark
   m_TagString: Untagged
@@ -4886,3 +4887,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &315849095926562392
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3590984670525165749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1eec96a3f3d4c44b7e644dfa97f5c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 0
+  EnemyInvisDuration: -1
+  particle: {fileID: 0}

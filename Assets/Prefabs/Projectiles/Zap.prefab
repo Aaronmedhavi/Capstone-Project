@@ -673,7 +673,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: -1, y: 0.3, z: 0}
     m_Rotation: {x: 0, y: 90, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 0.5, y: 0.5, z: 0.5}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -4845,3 +4845,7 @@ MonoBehaviour:
   Damage: 0
   EnemyInvisDuration: -1
   particle: {fileID: 8962498519297036624}
+  chain: 0
+  distance: 0
+  effectObject: {fileID: 5855611402146078236, guid: aa3c219eca644e14da4bfeb7aa976dde, type: 3}
+  hits: []
