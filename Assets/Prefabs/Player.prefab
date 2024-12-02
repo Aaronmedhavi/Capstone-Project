@@ -116,7 +116,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5148509010700678271
 Transform:
   m_ObjectHideFlags: 0
@@ -149,6 +149,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   info: {fileID: 11400000, guid: f203e13a815c2664885e36bd2be62b8b, type: 2}
+  layer_type:
+    serializedVersion: 2
+    m_Bits: 0
   Health: 5
   KnockbackMagnitude: 3
   playerMovement: {fileID: 7471012533971421975}
@@ -177,7 +180,7 @@ MonoBehaviour:
   DashSpeed: 35
   DashCooldown: 2
   Dashtime: 0.15
-  DashStopMagnitude: 0.5
+  DashStopMagnitude: 5
   DashDampeningValue: 1.3
   player: {fileID: 0}
 --- !u!114 &699944065340664708
