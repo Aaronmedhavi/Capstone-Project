@@ -739,11 +739,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28934b7f55f9f9a4b8f74c2d78e3f06a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   info: {fileID: 0}
   layer_type:
     serializedVersion: 2
     m_Bits: 0
   Health: 5
+  DefaultInvisibleCooldown: 0
+  ProjectileCooldown: 0
+  SkillCooldown: 0
   KnockbackMagnitude: 3
   playerMovement: {fileID: 503785810}
   playerCombat: {fileID: 503785809}
@@ -1396,11 +1400,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28934b7f55f9f9a4b8f74c2d78e3f06a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   info: {fileID: 0}
   layer_type:
     serializedVersion: 2
     m_Bits: 0
   Health: 5
+  DefaultInvisibleCooldown: 0
+  ProjectileCooldown: 0
+  SkillCooldown: 0
   KnockbackMagnitude: 3
   playerMovement: {fileID: 1782160729}
   playerCombat: {fileID: 1782160728}
