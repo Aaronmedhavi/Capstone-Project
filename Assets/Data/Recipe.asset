@@ -15,7 +15,187 @@ MonoBehaviour:
   recipes:
   - colors:
     - color: 0
-      count: 4
+      count: 1
+    - color: 2
+      count: 1
+    - color: 1
+      count: 1
+    - color: 4
+      count: 1
+    result: 6
+  - colors:
+    - color: 0
+      count: 1
+    - color: 2
+      count: 1
     - color: 3
+      count: 1
+    - color: 5
+      count: 1
+    result: 6
+  - colors:
+    - color: 1
+      count: 1
+    - color: 4
+      count: 1
+    - color: 3
+      count: 1
+    - color: 5
+      count: 1
+    result: 6
+  - colors:
+    - color: 0
+      count: 2
+    - color: 1
+      count: 2
+    result: 5
+  - colors:
+    - color: 0
+      count: 2
+    - color: 3
+      count: 2
+    result: 4
+  - colors:
+    - color: 1
+      count: 2
+    - color: 3
+      count: 2
+    result: 2
+  - colors:
+    - color: 5
+      count: 2
+    - color: 4
+      count: 2
+    result: 0
+  - colors:
+    - color: 5
+      count: 2
+    - color: 2
+      count: 2
+    result: 1
+  - colors:
+    - color: 2
+      count: 2
+    - color: 4
+      count: 2
+    result: 3
+  - colors:
+    - color: 0
+      count: 1
+    - color: 4
+      count: 1
+    - color: 5
+      count: 1
+    - color: 1
+      count: 1
+    result: 0
+  - colors:
+    - color: 0
+      count: 1
+    - color: 4
+      count: 1
+    - color: 5
+      count: 1
+    - color: 3
+      count: 1
+    result: 0
+  - colors:
+    - color: 5
+      count: 1
+    - color: 0
+      count: 1
+    - color: 1
+      count: 1
+    - color: 4
+      count: 1
+    result: 5
+  - colors:
+    - color: 5
+      count: 1
+    - color: 0
+      count: 1
+    - color: 1
+      count: 1
+    - color: 2
+      count: 1
+    result: 5
+  - colors:
+    - color: 1
+      count: 1
+    - color: 5
+      count: 1
+    - color: 2
+      count: 1
+    - color: 0
+      count: 1
+    result: 1
+  - colors:
+    - color: 1
+      count: 1
+    - color: 5
+      count: 1
+    - color: 2
+      count: 1
+    - color: 3
+      count: 1
+    result: 1
+  - colors:
+    - color: 2
+      count: 1
+    - color: 1
+      count: 1
+    - color: 3
+      count: 1
+    - color: 4
+      count: 1
+    result: 2
+  - colors:
+    - color: 2
+      count: 1
+    - color: 1
+      count: 1
+    - color: 3
+      count: 1
+    - color: 5
+      count: 1
+    result: 2
+  - colors:
+    - color: 3
+      count: 1
+    - color: 4
+      count: 1
+    - color: 2
+      count: 1
+    - color: 0
+      count: 1
+    result: 3
+  - colors:
+    - color: 3
+      count: 1
+    - color: 4
+      count: 1
+    - color: 2
+      count: 1
+    - color: 1
+      count: 1
+    result: 3
+  - colors:
+    - color: 4
+      count: 1
+    - color: 0
+      count: 1
+    - color: 3
+      count: 1
+    - color: 2
+      count: 1
+    result: 4
+  - colors:
+    - color: 4
+      count: 1
+    - color: 0
+      count: 1
+    - color: 3
+      count: 1
+    - color: 5
       count: 1
     result: 4
