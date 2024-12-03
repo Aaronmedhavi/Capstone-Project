@@ -1,9 +1,45 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
-public enum ColorItems { red, yellow, green, blue, purple, orange, brown }
 public enum Attack_Type { melee, projectile }
+
+[Serializable]
+public struct ProjectileInfo
+{
+    public GameObject ProjectilePrefab;
+    public Vector3 offset;
+}
+[Serializable]
+public class CombatData
+{
+    [Serializable]
+    public struct BasicAttack
+    {
+        public float Damage;
+        public Vector3 Offset;
+        public Vector3 Size;
+    }
+    public LayerMask attackLayer;
+    [Header("Attack Settings")]
+    public List<BasicAttack> damages;
+    public int TotalCombos = 3;
+    public float ComboInterval = 1;
+    
+    [Tooltip("colorData to modify the attacks duration")]
+    public float anim_speed = 1;
+    [Tooltip("to add a responsive feel to the game")]
+    public float attack_graceTime = 0.2f;
+
+    [Header("Projectile Settings")]
+    public List<GameObject> Projectiles = new();
+    public float Projectile_Cooldown;
+
+    [Header("Skill Settings")]
+    public GameObject SkillPrefab;
+    public float Skill_Cooldown;
+}
 [Serializable]
 public struct ProjectileCombo
 {
@@ -56,4 +92,5 @@ public class CombatHandler : MonoBehaviour
         time = Time.time + ComboInterval;
         isAttacking = null;
     }
+
 }

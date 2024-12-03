@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4110786952494031430}
   - component: {fileID: 8651681400567053138}
   - component: {fileID: 8387522888783908600}
+  - component: {fileID: 5470253145376646026}
   m_Layer: 0
   m_Name: Earth Clap Effect
   m_TagString: Untagged
@@ -43,7 +44,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 7
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -5002,3 +5003,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &5470253145376646026
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8985472813093205778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1eec96a3f3d4c44b7e644dfa97f5c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 0
+  EnemyInvisDuration: -1
+  particle: {fileID: 0}

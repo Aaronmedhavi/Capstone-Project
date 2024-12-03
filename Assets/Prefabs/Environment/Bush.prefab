@@ -97,6 +97,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03b37f9ee92168142b6a8c66bc1d3baf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 0
+  Health: 10
   DefaultInvisibleCooldown: 0
   DropChance: 30

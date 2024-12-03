@@ -1,11 +1,16 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class GroundSensor : MonoBehaviour
 {
     [SerializeField] float jumptimeOffset;
     public bool IsGrounded { get; private set; }
-    public float LedgeTime { get; private set; }
+    public Action OnLeavingGround, OnTouchingGround;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        OnTouchingGround?.Invoke();
+    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         IsGrounded = true;
@@ -13,7 +18,8 @@ public class GroundSensor : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         IsGrounded = false;
-        LedgeTime = Time.time + jumptimeOffset;
+        OnLeavingGround?.Invoke();
     }
+    
 }
 

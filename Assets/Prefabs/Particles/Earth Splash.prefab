@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8999740703090134004}
   - component: {fileID: 7003583896157526510}
   - component: {fileID: 1652161812959693230}
+  - component: {fileID: 2595818733571406894}
   m_Layer: 0
   m_Name: Earth Splash
   m_TagString: Untagged
@@ -44,7 +45,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 3
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -4888,6 +4889,21 @@ ParticleSystemRenderer:
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
 --- !u!114 &1652161812959693230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1384257121757482008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1eec96a3f3d4c44b7e644dfa97f5c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 0
+  EnemyInvisDuration: -1
+  particle: {fileID: 0}
+--- !u!114 &2595818733571406894
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

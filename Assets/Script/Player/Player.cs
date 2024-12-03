@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public interface IEntity
 {
@@ -19,24 +18,21 @@ public class Player : MonoBehaviour, IEntity
         onHit
     }
 
-    [SerializeField] ColorData data;
+    [Header("Datas")]
+    [SerializeField] PlayerData playerData;
+    [SerializeField] ColorData colorData;
     [SerializeField] private ColorInfo info;
-    [SerializeField] private LayerMask layer_type;
-
-    [Header("Player Stats")]
-    [SerializeField] private float Health;
-    [SerializeField] private float DefaultInvisibleCooldown;
-    [SerializeField] private float ProjectileCooldown;
-    [SerializeField] private float SkillCooldown;
-    [SerializeField] private float KnockbackMagnitude;
 
     [Header("Player Settings")]
-    [SerializeField] private PlayerMovement playerMovement;
-    [SerializeField] private CombatHandler playerCombat;
+    [SerializeField] private Player_Movement playerMovement;
+    [SerializeField] private NewCombatHandler playerCombat;
     [SerializeField] private PlatformHandler platformHandler;
 
     [Header("Sensor Settings")]
     [SerializeField] private GroundSensor groundSensor;
+
+    private float MaxHealth;
+    private float Health;
     public Rigidbody2D rb2d { get; private set; }
     public Animator animator { get; private set; }
     private SpriteRenderer _sr;
@@ -52,14 +48,14 @@ public class Player : MonoBehaviour, IEntity
     }
     private bool isInvisible => InvisCooldown > Time.time;
     public Vector2 InputValue => input.Player.Movement.ReadValue<Vector2>();
-    public float LedgeTime => groundSensor.LedgeTime;
     public bool IsGrounded { get => groundSensor.IsGrounded; }
     public bool IsAlive => true;
     public void SetColor(Recipe.ColorItems color)
     {
         Color_ = color;
-        playerCombat.ChangeProjectiles(info.GetColor(color).projectiles, layer_type);
-        _sr.color = data.GetColor(color);
+        playerCombat.data = playerData.CombatData;
+        playerMovement.data = playerData.MovementData;
+        _sr.color = colorData.GetColor(color);
     }
     public Recipe.ColorItems Color_;
     readonly StateMachine<State> SM = new();
@@ -83,13 +79,11 @@ public class Player : MonoBehaviour, IEntity
         _sr = GetComponent<SpriteRenderer>();
         SetColor(Color_);
 
-        //GameManager.input = input;
-        playerMovement.player = this;
         SM.AddState(new()
         {
             (State.idle, new _PlayerIdleState(animator, rb2d)),
-            (State.walk, new _PlayerWalkState(animator, rb2d, playerMovement.speed)),
-            (State.onAir, new _PlayerOnAirState(animator, rb2d, playerMovement.jump)),
+            (State.walk, new _PlayerWalkState(animator, rb2d, playerData.MovementData)),
+            (State.onAir, new _PlayerOnAirState(animator, rb2d, playerData.MovementData)),
             (State.onHit, new _PlayerOnHitState(animator, rb2d, gameObject)),
         });
         SM.AddGlobalTransition(new List<Transition<State>>()
@@ -100,13 +94,15 @@ public class Player : MonoBehaviour, IEntity
         });
         SM.Initialize(State.idle);
 
-        input.Player.Jump.performed += playerMovement.Jump_Performed;
-        input.Player.Jump.canceled += playerMovement.Jump_Canceled;
+        input.Player.Jump.performed += (x) => playerMovement.Jump_Performed();
+        input.Player.Jump.canceled += (x) => playerMovement.Jump_Canceled();
         input.Player.Attack.performed += (x) =>
         {
             if (IsGrounded && !playerMovement.isDashing) playerCombat.Attack();
         };
         input.Player.Dash.performed += (x) => playerMovement.Dash(InputValue);
+        input.Player.Projectile.performed += (x) => playerCombat.Projectile();
+        input.Player.Skill.performed += (x) => playerCombat.Skill();
     }
     private void Update()
     {
@@ -121,11 +117,11 @@ public class Player : MonoBehaviour, IEntity
     public void OnReceiveDamage(float value, float InvisDuration = -1, Transform origin = null)
     {
         if (value == 0 || isInvisible) return;
-        InvisCooldown = (InvisDuration != -1 ? InvisDuration : DefaultInvisibleCooldown) + Time.time;
+        InvisCooldown = (InvisDuration != -1 ? InvisDuration : playerData.playerStats.DefaultInvisibleCooldown) + Time.time;
         _Health -= value;
         if (Health > 0 && origin != null)
         {
-            rb2d.AddForce(origin.right * KnockbackMagnitude, ForceMode2D.Impulse);
+            rb2d.AddForce(origin.right * playerData.playerStats.KnockbackMagnitude, ForceMode2D.Impulse);
             SM.ChangeState(State.onHit, 1);
         }
     }

@@ -8,10 +8,18 @@ public abstract class Projectile : MonoBehaviour
     [SerializeField] protected float Damage;
     [SerializeField] protected float EnemyInvisDuration = -1; //ini sengaja biar kalo mau ada yang bredet, ini bredet
     protected GameObject thisObject;
+    protected GameObject ToRelease
+    {
+        get
+        {
+            if (thisObject == null) return gameObject;
+            return thisObject;
+        }
+    }
     protected LayerMask layer;
     public abstract void SetLayer(LayerMask layer, GameObject obj);
     public abstract void ParticleLogic(GameObject other);
-    public void Release() => ObjectPoolManager.ReleaseObject(thisObject);
+    public void Release() => ObjectPoolManager.ReleaseObject(ToRelease);
 }
 public abstract class ProjectileObject : Projectile
 {

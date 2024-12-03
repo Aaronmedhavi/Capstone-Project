@@ -27,12 +27,13 @@ public class _PlayerOnAirState : BaseState
 {
     Animator animator;
     Rigidbody2D rb;
+    MovementData movementData;
     float jumpPower;
-    public _PlayerOnAirState(Animator animator, Rigidbody2D rb, float jumpPower)
+    public _PlayerOnAirState(Animator animator, Rigidbody2D rb, MovementData movementData)
     {
         this.animator = animator;
         this.rb = rb;
-        this.jumpPower = jumpPower;
+        this.movementData = movementData;
     }
     public override void OnEnter()
     {

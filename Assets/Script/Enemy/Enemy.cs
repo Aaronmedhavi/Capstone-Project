@@ -106,7 +106,7 @@ public class Enemy : MonoBehaviour, IEntity
     public void SetColor(Recipe.ColorItems color)
     {
         this.color = color;
-        m_combatHandler.ChangeProjectiles(info.GetColor(color).projectiles, layer);
+        //m_combatHandler.ChangeProjectiles(info.GetColor(color).projectiles, layer);
         _sr.color = data.GetColor(color);
     }
 

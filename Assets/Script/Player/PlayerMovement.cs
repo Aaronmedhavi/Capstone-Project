@@ -1,8 +1,44 @@
 ﻿using System;
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
+
+[Serializable]
+public class MovementData
+{
+    [Header("Movement Settings")]
+    public float Speed;
+    public float Acceleration;
+
+    [Header("Jump Settings")]
+    public float NumberOfJumps = 1;
+
+    public float jump_graceTime;
+    public float jumpPower;
+    public float jumpCooltime;
+    public float jumpMaxHoldTime;
+    public ParticleSystem jumpParticle;
+
+    [Header("Dash_Settings")]
+    public float NumberOfDashes = 1;
+
+    public float DashPower = 20;
+    public float DashCooltime;
+    public float DashHangTime = 0.3f;
+    public float DashStopMagnitude = 0.5f;
+    public float DashDampeningValue = 1.15f;
+
+    [Header("Other Settings")]
+    public float LedgeTime;
+
+    public float gravity;
+    //public float airTime_Threshold;
+    public float Fall_GravityMultiplier;
+    public float max_Falling_Speed;
+
+    public float FastFall_GravityMultiplier;
+    public float max_FastFalling_Speed;
+}
+
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D Rb => player.rb2d;
@@ -63,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
     {
         bool isGrounded = player.IsGrounded;
         if (isOnCooldown(jumpCooldown)) return;
-        if (isGrounded || player.LedgeTime - Time.time >= 0)
+        if (isGrounded)
         {
             Rb.velocity = new Vector2(Rb.velocity.x, jumpPower);
             //isJumping = true;

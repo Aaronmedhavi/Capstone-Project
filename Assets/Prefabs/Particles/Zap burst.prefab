@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 562693373997310733}
   - component: {fileID: 2260442039727072590}
   - component: {fileID: 8273086630176060970}
+  - component: {fileID: 3704645258284788739}
   m_Layer: 0
   m_Name: Zap burst
   m_TagString: Untagged
@@ -43,7 +44,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 1
   simulationSpeed: 5
-  stopAction: 0
+  stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -4829,3 +4830,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &3704645258284788739
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2605667911794418878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac1eec96a3f3d4c44b7e644dfa97f5c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 0
+  EnemyInvisDuration: -1
+  particle: {fileID: 0}

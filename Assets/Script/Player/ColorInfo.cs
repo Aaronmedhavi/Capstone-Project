@@ -7,35 +7,14 @@ using UnityEngine;
 public class ColorInfo : ScriptableObject
 {
     [Serializable]
-    public struct ComboInfo
+    public struct Info
     {
         public Recipe.ColorItems color;
-        public List<ProjectileCombo> projectiles;
+        public List<PlayerData> projectiles;
     }
     [ArrayElementTitle("color")]
-    [SerializeField] private List<ComboInfo> combos = new();
-
-    public ComboInfo GetColor(Recipe.ColorItems color) => combos.Find(x => x.color == color);
-#if UNITY_EDITOR
-    [Header("Easy Assign (CUMAN DI UNITY EDITOR KOK)")]
-    public List<ProjectileCombo> SetAll;
-    public bool TurnOn;
-    private void OnValidate()
-    {
-        if (TurnOn)
-        {
-            foreach (var combo in combos)
-            {
-                int count = SetAll.Count;
-                for (int i = 0; i < count; i++)
-                {
-                    if (combo.projectiles.Count <= i) combo.projectiles.Add(new());
-                    combo.projectiles[i] = SetAll[i];
-                }
-            }
-        }
-    }
-#endif
+    [SerializeField] private List<Info> combos = new();
+    public Info GetColor(Recipe.ColorItems color) => combos.Find(x => x.color == color);
 }
 
 public class ArrayElementTitleAttribute : PropertyAttribute

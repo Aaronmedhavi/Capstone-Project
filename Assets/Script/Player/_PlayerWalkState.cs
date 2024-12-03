@@ -12,16 +12,19 @@ public class _PlayerWalkState : BaseState
 {
     Animator animator;
     Rigidbody2D rb;
+    MovementData movementData;
+
     float MaxSpeed;
-    public _PlayerWalkState(Animator animator, Rigidbody2D rb, float MaxSpeed)
+    public _PlayerWalkState(Animator animator, Rigidbody2D rb, MovementData movementData)
     {
         this.animator = animator;
         this.rb = rb;
-        this.MaxSpeed = MaxSpeed;
+        this.movementData = movementData;
     }
     public override void OnEnter()
     {
         animator.SetBool("IsWalking", true);
+        MaxSpeed = movementData.Speed;
     }
     public override void OnExit()
     {

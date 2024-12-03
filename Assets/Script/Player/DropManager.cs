@@ -19,6 +19,7 @@ public class DropManager : MonoBehaviour
             GameObject soul = ObjectPoolManager.GetObject(SoulPrefab, false, ObjectPoolManager.PooledInfo.GameObject);
             soul.transform.position = position;
             soul.GetComponent<ColorDrop>().SetColor(color);
+            soul.SetActive(true);
         }
     }
     public void DropColor(float DropChance,Recipe.ColorItems type, Vector3 position)
