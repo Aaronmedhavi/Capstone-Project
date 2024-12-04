@@ -18,7 +18,6 @@ public class ObjectPoolManager : MonoBehaviour
     {
         _PoolParents = PoolParents;
     }
-
     public static GameObject GetObject(GameObject ToSpawn,bool SetActiveToTrue = true, PooledInfo pooledInfo = PooledInfo.None)
     { 
         if (!ObjectPools.ContainsKey(ToSpawn.name)) ObjectPools.Add(ToSpawn.name, new());

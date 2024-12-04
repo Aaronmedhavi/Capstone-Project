@@ -53,6 +53,7 @@ public class Player : MonoBehaviour, IEntity
     public void SetColor(Recipe.ColorItems color)
     {
         Color_ = color;
+        playerData = info.GetInfo(color).data;
         playerCombat.data = playerData.CombatData;
         playerMovement.data = playerData.MovementData;
         _sr.color = colorData.GetColor(color);

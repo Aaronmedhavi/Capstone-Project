@@ -14,7 +14,7 @@ public class ColorInfo : ScriptableObject
     }
     [ArrayElementTitle("color")]
     [SerializeField] private List<Info> combos = new();
-    public Info GetColor(Recipe.ColorItems color) => combos.Find(x => x.color == color);
+    public Info GetInfo(Recipe.ColorItems color) => combos.Find(x => x.color == color);
 }
 
 public class ArrayElementTitleAttribute : PropertyAttribute
