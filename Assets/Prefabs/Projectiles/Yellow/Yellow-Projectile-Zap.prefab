@@ -4842,12 +4842,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d734032054bf943bd69f8c227e9106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 10
+  Damage: 100
   EnemyInvisDuration: -1
   particle: {fileID: 8962498519297036624}
   chain: 3
   distance: 1
-  dmgMultiplierEachChain: 0.75
+  dmgMultiplierEachChain: 0.5
   chainProjectile: {fileID: 264593797222231889}
   effectObject: {fileID: 2630160685558664105, guid: aa3c219eca644e14da4bfeb7aa976dde, type: 3}
   hits: []

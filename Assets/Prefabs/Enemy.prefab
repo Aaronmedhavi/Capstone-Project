@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3704940013880748507}
   - component: {fileID: 1031320476553666458}
   - component: {fileID: 4154169400695866641}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: PlatformHandler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 1773246907965598316}
   - component: {fileID: 4375503734070533455}
   - component: {fileID: 8125588526951759304}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LeavingRadius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 877618288101306418}
   - component: {fileID: 8342647090146897241}
   - component: {fileID: 2702489896502539036}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RecognitionRadius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +277,7 @@ GameObject:
   - component: {fileID: 3739881616401894794}
   - component: {fileID: 993774211914753528}
   - component: {fileID: 7974741181210718936}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: AttackingRadius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -362,7 +362,7 @@ GameObject:
   - component: {fileID: 300164632047296750}
   - component: {fileID: 9179423854427194741}
   - component: {fileID: 3615568801804092880}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ChasingRadius
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +445,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5337099556716522733}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ledge
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -663,9 +663,9 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 256
-  Health: 5
-  DefaultInvisibleCooldown: 0
-  DropChance: 0
+  Health: 500
+  DefaultInvisibleCooldown: 1
+  DropChance: 80
   m_idleSettings:
     maxIdleTime: 2.5
     maxDistanceIdleTime: 2
@@ -680,8 +680,8 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 136
   m_attackSettings:
-    damage: 0
-    DMGTimeInterval: 0
+    damage: 25
+    DMGTimeInterval: 0.5
   m_viewSettings:
     AlertGains: 1
   m_combatHandler: {fileID: 5324722414778761662}
@@ -703,7 +703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectiles: []
-  TotalCombos: 1
+  TotalCombos: 2
   ComboInterval: 0.3
   animator: {fileID: 8100480318840370633}
 --- !u!114 &7671929887630094632

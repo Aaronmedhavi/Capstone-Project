@@ -13,28 +13,28 @@ MonoBehaviour:
   m_Name: Orange
   m_EditorClassIdentifier: 
   playerStats:
-    MaxHealth: 0
-    DefaultInvisibleCooldown: 0
-    KnockbackMagnitude: 0
+    MaxHealth: 1000
+    DefaultInvisibleCooldown: 1
+    KnockbackMagnitude: 1.5
   MovementData:
-    Speed: 8
-    Acceleration: 3.5
-    NumberOfJumps: 1
+    Speed: 13
+    Acceleration: 1.5
+    NumberOfJumps: 2
     jump_graceTime: 0.15
-    jumpPower: 13.5
+    jumpPower: 13
     jumpCooltime: 0.2
     jumpMaxHoldTime: 0.2
     jumpParticle: {fileID: 330368580975305023, guid: e8fd9c35781968b42bff6c20f1ccbfea, type: 3}
     NumberOfDashes: 1
-    DashPower: 40
-    DashCooltime: 1
+    DashPower: 30
+    DashCooltime: 3
     DashHangTime: 0.15
-    DashStopMagnitude: 5
-    DashDampeningValue: 1.3
+    DashStopMagnitude: 7
+    DashDampeningValue: 1.5
     LedgeTime: 1
-    gravity: 2.5
+    gravity: 3
     Fall_GravityMultiplier: 3
-    max_Falling_Speed: 40
+    max_Falling_Speed: 20
     FastFall_GravityMultiplier: 1.5
     max_FastFalling_Speed: 60
   CombatData:
@@ -42,21 +42,21 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 577
     damages:
-    - Damage: 1
+    - Damage: 50
       Offset: {x: 0.6, y: 0.2, z: 0}
       Size: {x: 1, y: 1.3, z: 0}
-      Frames: 0
-      FramePoint: 0
-    - Damage: 2
+      Frames: 7
+      FramePoint: 5
+    - Damage: 50
       Offset: {x: 0.5, y: 0.2, z: 0}
       Size: {x: 1, y: 1.3, z: 0}
-      Frames: 0
-      FramePoint: 0
-    - Damage: 3
+      Frames: 6
+      FramePoint: 4
+    - Damage: 100
       Offset: {x: 0.5, y: 0.3, z: 0}
       Size: {x: 1, y: 1.3, z: 0}
-      Frames: 0
-      FramePoint: 0
+      Frames: 5
+      FramePoint: 3
     TotalCombos: 3
     ComboInterval: 1
     anim_speed: 1
@@ -65,6 +65,6 @@ MonoBehaviour:
     - {fileID: 4832724454346457137, guid: 1029ebcf383ea1e4ea64efab6ab041c3, type: 3}
     - {fileID: 97047216886634679, guid: d2d561f6b444fe4478fd6027825f6a9a, type: 3}
     mode: 0
-    Projectile_Cooldown: 0
+    Projectile_Cooldown: 0.5
     SkillPrefab: {fileID: 5213567246339432255, guid: 4bc2e8bc6b9c92346903ccdf537c5df8, type: 3}
-    Skill_Cooldown: 3
+    Skill_Cooldown: 1
