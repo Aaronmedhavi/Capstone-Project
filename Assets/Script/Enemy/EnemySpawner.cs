@@ -29,6 +29,7 @@ public class EnemySpawner : MonoBehaviour
             {
                 int random_ground = Random.Range(0, count);
                 isSpawnable = GetRandomArea((BoxCollider2D)grounds[random_ground], out spawn_position);
+
             } while (isSpawnable == false);
             var npc = ObjectPoolManager.GetObject(EnemyPrefab, false, ObjectPoolManager.PooledInfo.GameObject);
             npc.transform.position = spawn_position;

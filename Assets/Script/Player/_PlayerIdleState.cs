@@ -37,6 +37,7 @@ public class _PlayerOnAirState : BaseState
     }
     public override void OnEnter()
     {
+        jumpPower = movementData.jumpPower;
         animator.SetBool("Jumping", true);
     }
     public override void OnExit()

@@ -102,13 +102,12 @@ public class Player_Movement : MonoBehaviour
         float dashCooltime = data.DashCooltime;
         float cd = data.NumberOfDashes * dashCooltime - Mathf.Max(dashCooldown - Time.time, 0);
         int dashAttempts = (int)(cd / dashCooltime);
-        Debug.Log(dashAttempts);
-        if (dashAttempts != 0 && moveVector.magnitude != 0)
+        if (dashAttempts != 0)
         {
-            normalizedDirection = moveVector.normalized;
+            normalizedDirection = moveVector.magnitude != 0 ? moveVector.normalized : transform.right;
             rb.velocity = normalizedDirection * data.DashPower;
 
-            dashCooldown += dashCooltime;
+            dashCooldown = (dashCooldown - Time.time) >= 0 ? dashCooldown + dashCooltime : Time.time + dashCooltime;
             dashDuration = Time.time + data.DashHangTime;
             isDashing = true;
             Logic += DashLogic;

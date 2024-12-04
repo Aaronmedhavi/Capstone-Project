@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections.Generic;
-public class WallSlam : ProjectileObject
+
+public class Ground : ProjectileObject
 {
     [Header("Lightning Settings (No lifeTime, follows particle Lifetime)")]
     [SerializeField] private LayerMask groundLayers;
@@ -25,6 +25,7 @@ public class WallSlam : ProjectileObject
 
     public override void Update()
     {
+        transform.position = Vector2.MoveTowards(transform.position, ray.collider.transform.position, timeOverDistance * Time.deltaTime);
         if (triggertime <= Time.time && !triggered && ray.collider)
         {
             triggered = true;
@@ -58,33 +59,5 @@ public class WallSlam : ProjectileObject
     {
         layer = layer | groundLayers;
         base.SetLayer(layer, obj);
-    }
-}
-public class Bubble : DamagePerParticle
-{
-    [Header("Bubble Settings")]
-    [SerializeField] private float BubbleCount;
-    [SerializeField] private float ImmobilizeDuration;
-
-    readonly Dictionary<IEntity, int> entities = new();
-
-    public override void SetLayer(LayerMask layer, GameObject obj)
-    {
-        base.SetLayer(layer, obj);
-        entities.Clear();
-    }
-    public override void ProjectileLogic(GameObject other)
-    {
-        if (other.TryGetComponent(out IEntity entity))
-        {
-            entity.OnReceiveDamage(Damage, EnemyInvisDuration);
-            if (entities.ContainsKey(entity)) entities[entity]++;
-            else entities.Add(entity, 1);
-
-            if (entities[entity] == BubbleCount)
-            {
-                //APPLY IMMOBILIZES
-            }
-        }
     }
 }

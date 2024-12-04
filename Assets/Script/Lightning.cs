@@ -1,13 +1,5 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-public class ThunderStrike : ProjectileParticle {
-    public override void ProjectileLogic(GameObject other) { }
-
-    private void OnParticleTrigger()
-    {
-        
-    }
-}
 
 public class Lightning : ProjectileParticle
 {
@@ -21,6 +13,7 @@ public class Lightning : ProjectileParticle
     [SerializeField] private GameObject effectObject;
 
     public List<Transform> hits = new(); 
+
     public override void ProjectileLogic(GameObject other)
     {
         if (other.TryGetComponent<IEntity>(out var hit) && !hits.Contains(other.transform))
@@ -31,7 +24,7 @@ public class Lightning : ProjectileParticle
             effect.SetActive(true);
             if (chain > 0 && hit.IsAlive)
             {
-                var ray = Physics2D.Raycast(other.transform.position + transform.right * 2, transform.right, distance, ~notInLayer);
+                var ray = Physics2D.Raycast(other.transform.position + transform.right * 1, transform.right, distance, ~notInLayer);
                 if (ray && ray.collider.TryGetComponent<IEntity>(out var enty) && enty.IsAlive)
                 {
                     Debug.Log("chain");

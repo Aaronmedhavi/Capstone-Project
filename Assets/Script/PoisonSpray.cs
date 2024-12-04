@@ -1,37 +1,31 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Fist : ProjectileObject
+public class PoisonSpray : ProjectileObject
 {
     [Header("Fist Settings (No lifeTime, follows particle Lifetime)")]
-    [SerializeField] private LayerMask groundLayers;
-    [SerializeField] private ParticleSystem particle;
     [SerializeField] private float colActivateTime;
-    [SerializeField] private float MaxHits;
-    [SerializeField] private float TotalHitsPerEnemy = 1;
+    [SerializeField] private float HitsOverTime;
 
-    float colSpawnTime, hit;
+    float colSpawnTime, dot_starttime;
+    int dot_indicator;
     public override void OnEnable()
     {
-        particle.Play();
+        dot_indicator = 1;
+        dot_starttime = Time.time;
         colSpawnTime = Time.time + colActivateTime;
-        hit = 0;
     }
     public override void Update()
     {
-        if (colSpawnTime <= Time.time)
+        if (colSpawnTime <= Time.time && (Time.time - dot_starttime) * HitsOverTime > dot_indicator / HitsOverTime) 
         {
+            dot_indicator++;
             BoxCollider2D box = col as BoxCollider2D;
             var collisions = Physics2D.OverlapBoxAll((Vector2)transform.position + box.offset, box.size, 0, ~notInLayer);
             foreach (var collision in collisions)
             {
-                if (collision.TryGetComponent(out IEntity entity) && hit < MaxHits)
+                if (collision.TryGetComponent(out IEntity entity))
                 {
-                    for (int i = 0; i < TotalHitsPerEnemy; i++)
-                    {
-                        entity.OnReceiveDamage(Damage, EnemyInvisDuration);
-                    }
-                    hit++;
+                    entity.OnReceiveDamage(Damage, EnemyInvisDuration);
                 }
             }
         }
@@ -41,11 +35,6 @@ public class Fist : ProjectileObject
         Release();
     }
     public override void ProjectileLogic(GameObject other) { }
-    public override void SetLayer(LayerMask layer, GameObject obj)
-    {
-        layer = layer | groundLayers;
-        base.SetLayer(layer, obj);
-    }
 }
 
 //public class Fist : ProjectileParticle
