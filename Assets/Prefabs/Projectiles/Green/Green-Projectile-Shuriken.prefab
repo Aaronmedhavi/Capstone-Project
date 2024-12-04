@@ -4958,6 +4958,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c724625b9d83d043958bd23fc9bb482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 1
+  Damage: 50
   EnemyInvisDuration: -1
   particle: {fileID: 4573681293207586644}

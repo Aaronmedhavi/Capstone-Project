@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 822dc6051b0364d4e9bd5d368d5cee11, type: 3}
-  m_Name: Orange
+  m_Name: Red
   m_EditorClassIdentifier: 
   playerStats:
     MaxHealth: 1000
@@ -62,9 +62,8 @@ MonoBehaviour:
     anim_speed: 1
     attack_graceTime: 0.29
     Projectiles:
-    - {fileID: 4832724454346457137, guid: 1029ebcf383ea1e4ea64efab6ab041c3, type: 3}
-    - {fileID: 97047216886634679, guid: d2d561f6b444fe4478fd6027825f6a9a, type: 3}
+    - {fileID: 5042317030839787208, guid: 61239591c30476d47bdf5f72ac71f3f2, type: 3}
     mode: 0
-    Projectile_Cooldown: 0.5
-    SkillPrefab: {fileID: 5213567246339432255, guid: 4bc2e8bc6b9c92346903ccdf537c5df8, type: 3}
-    Skill_Cooldown: 1
+    Projectile_Cooldown: 3
+    SkillPrefab: {fileID: 1407168546517854417, guid: 34fe84ab826a27c4982436ec35ca3662, type: 3}
+    Skill_Cooldown: 10
