@@ -31,19 +31,22 @@ public class Player : MonoBehaviour, IEntity
     [Header("Sensor Settings")]
     [SerializeField] private GroundSensor groundSensor;
 
-    private float MaxHealth;
-    private float Health;
+    public float CurrentHealth => _Health;
+    public float MaxHealth => maxHealth;
+
+    private float maxHealth;
+    private float health;
     public Rigidbody2D rb2d { get; private set; }
     public Animator animator { get; private set; }
     private SpriteRenderer _sr;
 
     private float _Health
     {
-        get => Health; 
+        get => health; 
         set
         {
-            Health = value;
-            if (Health <= 0) OnDeath();
+            health = value;
+            if (health <= 0) OnDeath();
         }
     }
     private bool isInvisible => InvisCooldown > Time.time;
@@ -78,6 +81,9 @@ public class Player : MonoBehaviour, IEntity
         animator = GetComponent<Animator>();
         _sr = GetComponent<SpriteRenderer>();
         SetColor(Color_);
+
+        maxHealth = playerData.playerStats.MaxHealth;
+        _Health = maxHealth;
 
         SM.AddState(new()
         {
@@ -119,7 +125,7 @@ public class Player : MonoBehaviour, IEntity
         if (value == 0 || isInvisible) return;
         InvisCooldown = (InvisDuration != -1 ? InvisDuration : playerData.playerStats.DefaultInvisibleCooldown) + Time.time;
         _Health -= value;
-        if (Health > 0 && origin != null)
+        if (health > 0 && origin != null)
         {
             rb2d.AddForce(origin.right * playerData.playerStats.KnockbackMagnitude, ForceMode2D.Impulse);
             SM.ChangeState(State.onHit, 1);

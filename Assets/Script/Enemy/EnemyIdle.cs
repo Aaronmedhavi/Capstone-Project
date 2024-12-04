@@ -24,6 +24,7 @@ public class EnemyIdle : BaseState
         }
         else if (enemy.MaxDistanceReached) idleTime = Time.time + settings.maxDistanceIdleTime;
         else idleTime = Time.time + Random.Range(0, settings.maxIdleTime);
+        enemy.animator.Play("Idle");
         Debug.Log("Idling");
     }
     public override void OnExit()
@@ -61,6 +62,7 @@ public class EnemyWalk : BaseState
     }
     public override void OnEnter()
     {
+        enemy.animator.Play("Run");
         if (ChaseSensor.IsInRange)
         {
             target_location = ChaseSensor.Target;
