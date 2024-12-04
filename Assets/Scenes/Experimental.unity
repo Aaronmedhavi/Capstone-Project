@@ -8299,14 +8299,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28934b7f55f9f9a4b8f74c2d78e3f06a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: 1e3dad4a3fa61e342bea5faf62773d33, type: 2}
+  playerData: {fileID: 11400000, guid: 006e1831348f0c245922cb3c66b89890, type: 2}
   colorData: {fileID: 11400000, guid: 47eddf699df15864fac589e03a772055, type: 2}
   info: {fileID: 11400000, guid: f203e13a815c2664885e36bd2be62b8b, type: 2}
   playerMovement: {fileID: 7656312329103850053}
   playerCombat: {fileID: 1510761312}
   platformHandler: {fileID: 931743648902975309}
   groundSensor: {fileID: 3552794173982978144}
-  Color_: 1
+  Color_: 6
 --- !u!4 &5148509009526544161
 Transform:
   m_ObjectHideFlags: 0

@@ -1,10 +1,12 @@
-﻿using UnityEngine;
-using static UnityEngine.RuleTile.TilingRuleOutput;
+﻿using System.Collections;
+using UnityEngine;
 
-public class ThunderStrike : ProjectileObject {
-
+public class WallSlam : ProjectileObject
+{
     [Header("Lightning Settings (No lifeTime, follows particle Lifetime)")]
     [SerializeField] private LayerMask groundLayers;
+    [SerializeField] private Animator animator;
+    [SerializeField] private string AnimatorName;
     [SerializeField] private ParticleSystem particle;
     [SerializeField] private float Distance;
     [SerializeField] private float timeOverDistance;
@@ -13,6 +15,7 @@ public class ThunderStrike : ProjectileObject {
     RaycastHit2D ray;
     float hit, triggertime;
     bool triggered;
+
     public override void OnEnable()
     {
         var box = col as BoxCollider2D;
@@ -22,17 +25,19 @@ public class ThunderStrike : ProjectileObject {
         triggertime = Time.time + ray.distance * timeOverDistance;
         hit = 0;
     }
+
     public override void Update()
     {
-        if (triggertime <= Time.time && !triggered && ray.collider)
+        if (triggertime <= Time.time && !triggered)
         {
             triggered = true;
             BoxCollider2D box = col as BoxCollider2D;
-            Vector3 position = ray.collider.transform.position;
+            Vector3 position = ray.collider ? ray.collider.transform.position : transform.position + transform.right * Distance/2;
             RaycastHit2D ground = Physics2D.Raycast(position, Vector3.down, box.size.y, groundLayers);
             if (ground.collider != null)
             {
                 transform.position = ground.point;
+                animator.Play(AnimatorName);
                 particle.Play();
 
                 var collisions = Physics2D.OverlapBoxAll(ground.point + box.offset, box.size, 0, ~notInLayer);
@@ -45,13 +50,20 @@ public class ThunderStrike : ProjectileObject {
                     }
                 }
             }
+            StartCoroutine(WaitExplosion());
         }
+    }
+    public IEnumerator WaitExplosion()
+    {
+        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1);
+        Release();
     }
     private void OnParticleSystemStopped()
     {
         Release();
     }
     public override void ProjectileLogic(GameObject other) { }
+
     public override void SetLayer(LayerMask layer, GameObject obj)
     {
         layer = layer | groundLayers;

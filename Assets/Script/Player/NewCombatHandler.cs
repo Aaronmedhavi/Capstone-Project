@@ -51,7 +51,7 @@ public class NewCombatHandler : MonoBehaviour
         if (!SkillOnCooldown)
         {
             SpawnProjectile(data.SkillPrefab);
-            projectileCooldown = Time.time + data.Skill_Cooldown;
+            skillCooldown = Time.time + data.Skill_Cooldown;
         }
     }
     public void SpawnProjectile(GameObject _obj)
