@@ -8306,7 +8306,7 @@ MonoBehaviour:
   playerCombat: {fileID: 1510761312}
   platformHandler: {fileID: 931743648902975309}
   groundSensor: {fileID: 3552794173982978144}
-  Color_: 6
+  Color_: 3
 --- !u!4 &5148509009526544161
 Transform:
   m_ObjectHideFlags: 0
