@@ -34,11 +34,11 @@ public class NewCombatHandler : MonoBehaviour
         if(isAttacking != null) attackgracePeriod = Time.time + data.attack_graceTime;
         else isAttacking = StartCoroutine(Attacking());
     }
-    public void Projectile(Mode mode = Mode.Focused)
+    public void Projectile()
     {
         if (!ProjectileOnCooldown)
         {
-            if(mode == Mode.Cycle)
+            if(data.mode == Mode.Cycle)
             {
                 projectileIndex = (projectileIndex + 1)%data.Projectiles.Count;
             }
@@ -59,7 +59,7 @@ public class NewCombatHandler : MonoBehaviour
         var obj = ObjectPoolManager.GetObject(_obj, false, ObjectPoolManager.PooledInfo.GameObject);
         var projectile = obj.GetComponent<Projectile>();
         projectile ??= obj.GetComponentInChildren<Projectile>();
-        projectile.SetLayer(data.attackLayer, obj);
+        projectile.SetLayer(data.notInAttackLayer, obj);
 
         obj.transform.SetPositionAndRotation(transform.position + transform.right * 1, transform.rotation);
         obj.SetActive(true);
@@ -71,14 +71,16 @@ public class NewCombatHandler : MonoBehaviour
         else attackIndex = (attackIndex + 1)%data.TotalCombos;
 
         CombatData.BasicAttack atkData = data.damages[attackIndex];
+        float normalizedFrame = atkData.Frames != 0 ? atkData.FramePoint / atkData.Frames : 0;
 
         string animationName = "Attack" + (attackIndex + 1).ToString();
 
         animator.Play(animationName);
         yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).IsName(animationName));
+        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime > normalizedFrame);
+        var hit = Physics2D.OverlapBox(transform.position + atkData.Offset, atkData.Size, 0, ~data.notInAttackLayer);
+        if (hit && hit.TryGetComponent(out IEntity entity)) entity.OnReceiveDamage(atkData.Damage);
         yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime > data.anim_speed);
-        var hit = Physics2D.OverlapBox(transform.position + atkData.Offset, atkData.Size, 0, ~data.attackLayer);
-        if (hit.TryGetComponent(out IEntity entity)) entity.OnReceiveDamage(atkData.Damage);
         comboTime = Time.time + data.ComboInterval;
         isAttacking = null;
     }

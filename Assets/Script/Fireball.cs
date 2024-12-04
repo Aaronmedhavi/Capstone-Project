@@ -7,7 +7,7 @@ public class Explosion : ProjectileObject
     [SerializeField] private Vector2 size;
     public override void OnEnable()
     {
-        var hits = Physics2D.RaycastAll(transform.position, transform.right, distance, ~layer).ToList();
+        var hits = Physics2D.RaycastAll(transform.position, transform.right, distance, ~notInLayer).ToList();
         IEntity entity = null;
         Collider2D col = null;
         foreach (var hit in hits)
@@ -29,7 +29,7 @@ public class Explosion : ProjectileObject
     }
     public void Explode(Vector3 post)
     {
-        var colliders = Physics2D.OverlapBoxAll(post, size, 0, ~layer);
+        var colliders = Physics2D.OverlapBoxAll(post, size, 0, ~notInLayer);
         foreach (var collider in colliders)
         {
             if (collider.TryGetComponent(out IEntity entity))
@@ -39,13 +39,13 @@ public class Explosion : ProjectileObject
         }
         Release();
     }
-    public override void ParticleLogic(GameObject other){}
+    public override void ProjectileLogic(GameObject other){}
 }
 public class Fireball : ProjectileObject
 {
     [Header("Fireball Settings")]
     [SerializeField] private float radius;
-    public override void ParticleLogic(GameObject other)
+    public override void ProjectileLogic(GameObject other)
     {
         var colliders = Physics2D.OverlapCircleAll(other.transform.position, radius);
         foreach (var collider in colliders)

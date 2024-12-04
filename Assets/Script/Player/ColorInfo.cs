@@ -10,7 +10,7 @@ public class ColorInfo : ScriptableObject
     public struct Info
     {
         public Recipe.ColorItems color;
-        public List<PlayerData> projectiles;
+        public PlayerData data;
     }
     [ArrayElementTitle("color")]
     [SerializeField] private List<Info> combos = new();

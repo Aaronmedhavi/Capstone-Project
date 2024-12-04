@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 822dc6051b0364d4e9bd5d368d5cee11, type: 3}
+  m_Name: Yellow
+  m_EditorClassIdentifier: 
+  playerStats:
+    MaxHealth: 0
+    DefaultInvisibleCooldown: 0
+    KnockbackMagnitude: 0
+  MovementData:
+    Speed: 8
+    Acceleration: 3.5
+    NumberOfJumps: 1
+    jump_graceTime: 0.15
+    jumpPower: 13.5
+    jumpCooltime: 0.2
+    jumpMaxHoldTime: 0.2
+    jumpParticle: {fileID: 330368580975305023, guid: e8fd9c35781968b42bff6c20f1ccbfea, type: 3}
+    NumberOfDashes: 1
+    DashPower: 40
+    DashCooltime: 1
+    DashHangTime: 0.15
+    DashStopMagnitude: 5
+    DashDampeningValue: 1.3
+    LedgeTime: 1
+    gravity: 2.5
+    Fall_GravityMultiplier: 3
+    max_Falling_Speed: 40
+    FastFall_GravityMultiplier: 1.5
+    max_FastFalling_Speed: 60
+  CombatData:
+    notInAttackLayer:
+      serializedVersion: 2
+      m_Bits: 0
+    damages:
+    - Damage: 1
+      Offset: {x: 0.6, y: 0.2, z: 0}
+      Size: {x: 1, y: 1.3, z: 0}
+      Frames: 0
+      FramePoint: 0
+    - Damage: 2
+      Offset: {x: 0.5, y: 0.2, z: 0}
+      Size: {x: 1, y: 1.3, z: 0}
+      Frames: 0
+      FramePoint: 0
+    - Damage: 3
+      Offset: {x: 0.5, y: 0.3, z: 0}
+      Size: {x: 1, y: 1.3, z: 0}
+      Frames: 0
+      FramePoint: 0
+    TotalCombos: 3
+    ComboInterval: 1
+    anim_speed: 1
+    attack_graceTime: 0.29
+    Projectiles:
+    - {fileID: 264593797222231889, guid: ad1639095f1167941aa8be9ee63db794, type: 3}
+    mode: 1
+    Projectile_Cooldown: 0
+    SkillPrefab: {fileID: 3695404523069128577, guid: 8b127bf6a5d32c748a20799ae205d4c3, type: 3}
+    Skill_Cooldown: 3

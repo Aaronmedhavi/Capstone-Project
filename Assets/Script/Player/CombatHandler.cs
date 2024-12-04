@@ -20,8 +20,11 @@ public class CombatData
         public float Damage;
         public Vector3 Offset;
         public Vector3 Size;
+
+        public int Frames;
+        public int FramePoint;
     }
-    public LayerMask attackLayer;
+    public LayerMask notInAttackLayer;
     [Header("Attack Settings")]
     public List<BasicAttack> damages;
     public int TotalCombos = 3;
@@ -34,6 +37,7 @@ public class CombatData
 
     [Header("Projectile Settings")]
     public List<GameObject> Projectiles = new();
+    public NewCombatHandler.Mode mode = NewCombatHandler.Mode.Focused;
     public float Projectile_Cooldown;
 
     [Header("Skill Settings")]

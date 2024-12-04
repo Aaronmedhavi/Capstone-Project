@@ -67,7 +67,6 @@ public class Player_Movement : MonoBehaviour
         if (jumpCooldown > Time.time && jumpAttempts == 0) return;
         if (isGrounded || ledgeTime > Time.time || jumpAttempts > 0)
         {
-            Debug.Log($"{isGrounded} || {ledgeTime} > {Time.time} || {jumpAttempts > 0}");
             isJumping = true;
             HoldJumpTime = Time.time + data.jumpMaxHoldTime;
             ledgeTime = -1;

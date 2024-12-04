@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6602397599392904140}
   - component: {fileID: 5483186050568009983}
   - component: {fileID: 3886049640907864621}
+  - component: {fileID: 5915068753975864882}
   m_Layer: 0
   m_Name: Blue-Projectile-Bubble
   m_TagString: Untagged
@@ -4828,3 +4829,20 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &5915068753975864882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6680313375162528534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373ccf80b60bc13409e4bc3ef7e8b305, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 2
+  EnemyInvisDuration: -1
+  particle: {fileID: 5483186050568009983}
+  BubbleCount: 7
+  ImmobilizeDuration: 1

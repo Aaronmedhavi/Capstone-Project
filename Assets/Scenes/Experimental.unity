@@ -2219,6 +2219,8 @@ MonoBehaviour:
     Damage: 0
     Offset: {x: 0.5, y: 0.3, z: 0}
     Size: {x: 1, y: 1.3, z: 0}
+    Frames: 0
+    FramePoint: 0
 --- !u!1001 &1580433792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8297,7 +8299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28934b7f55f9f9a4b8f74c2d78e3f06a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: dac751abcb7fbac4da41c132050df9d3, type: 2}
+  playerData: {fileID: 11400000, guid: 1e3dad4a3fa61e342bea5faf62773d33, type: 2}
   colorData: {fileID: 11400000, guid: 47eddf699df15864fac589e03a772055, type: 2}
   info: {fileID: 11400000, guid: f203e13a815c2664885e36bd2be62b8b, type: 2}
   playerMovement: {fileID: 7656312329103850053}
