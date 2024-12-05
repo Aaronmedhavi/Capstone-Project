@@ -53,7 +53,7 @@ public abstract class ProjectileObject : Projectile
 public abstract class ProjectileParticle : Projectile
 {
     [SerializeField] protected ParticleSystem particle;
-    public void OnEnable()
+    public virtual void OnEnable()
     {
         particle.Play();
     }
@@ -67,7 +67,7 @@ public abstract class ProjectileParticle : Projectile
         var main = particle.main;
         main.stopAction = ParticleSystemStopAction.Callback;
     }
-    public void Stop()
+    public virtual void Stop()
     {
         particle.Stop();
         Release();

@@ -21,6 +21,7 @@ public class ThunderStrike : ProjectileObject {
 
         triggertime = Time.time + ray.distance * timeOverDistance;
         hit = 0;
+        SoundManager.instance.PlaySFX("YellowSkill");
     }
     public override void Update()
     {

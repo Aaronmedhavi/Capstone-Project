@@ -28,6 +28,8 @@ public class Explosion : ProjectileObject
             Explode(col.transform.position);
         }
         else Explode(transform.position + transform.right * 1 / 2 * distance);
+        SoundManager.instance.PlaySFX("RedSkill");
+
     }
     public void Explode(Vector3 post)
     {

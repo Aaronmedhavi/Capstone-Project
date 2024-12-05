@@ -663,6 +663,7 @@ MonoBehaviour:
   layer:
     serializedVersion: 2
     m_Bits: 256
+  animator: {fileID: 0}
   Health: 500
   DefaultInvisibleCooldown: 1
   DropChance: 80

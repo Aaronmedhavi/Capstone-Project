@@ -13,6 +13,7 @@ public class PoisonSpray : ProjectileObject
         dot_indicator = 1;
         dot_starttime = Time.time;
         colSpawnTime = Time.time + colActivateTime;
+        SoundManager.instance.PlaySFX("PurpleSkill");
     }
     public override void Update()
     {

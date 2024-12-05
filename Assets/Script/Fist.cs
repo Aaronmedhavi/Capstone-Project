@@ -16,6 +16,7 @@ public class Fist : ProjectileObject
         particle.Play();
         colSpawnTime = Time.time + colActivateTime;
         hit = 0;
+        SoundManager.instance.PlaySFX("Orange");
     }
     public override void Update()
     {

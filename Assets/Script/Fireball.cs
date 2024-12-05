@@ -3,6 +3,12 @@ public class Fireball : ProjectileParticle
 {
     [Header("Fireball Settings")]
     [SerializeField] private float radius;
+
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        SoundManager.instance.PlaySFX("Red");
+    }
     public override void ProjectileLogic(GameObject other)
     {
         var colliders = Physics2D.OverlapCircleAll(other.transform.position, radius);
