@@ -703,7 +703,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4170f0a93b447944fa53dd2457e5f65c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectiles: []
+  projectiles:
+  - Combo_number: 0
+    ProjectilePrefab: {fileID: 0}
+    FramesInAnimation: 0
+    ProjectileSpawnFrame: 0
+  - Combo_number: 0
+    ProjectilePrefab: {fileID: 6680313375162528534, guid: 4fcff743f70546e4c8d556677b813800, type: 3}
+    FramesInAnimation: 0
+    ProjectileSpawnFrame: 0
+  - Combo_number: 0
+    ProjectilePrefab: {fileID: 6312855150306413712, guid: 8feed30e37ee1d4449441c3110097ef8, type: 3}
+    FramesInAnimation: 0
+    ProjectileSpawnFrame: 0
+  - Combo_number: 0
+    ProjectilePrefab: {fileID: 4832724454346457137, guid: 1029ebcf383ea1e4ea64efab6ab041c3, type: 3}
+    FramesInAnimation: 0
+    ProjectileSpawnFrame: 0
+  - Combo_number: 0
+    ProjectilePrefab: {fileID: 6027610415451290575, guid: 98ca8fa834a1ff8459a23b83e5611441, type: 3}
+    FramesInAnimation: 0
+    ProjectileSpawnFrame: 0
+  - Combo_number: 0
+    ProjectilePrefab: {fileID: 5042317030839787208, guid: 61239591c30476d47bdf5f72ac71f3f2, type: 3}
+    FramesInAnimation: 0
+    ProjectileSpawnFrame: 0
+  - Combo_number: 0
+    ProjectilePrefab: {fileID: 264593797222231889, guid: ad1639095f1167941aa8be9ee63db794, type: 3}
+    FramesInAnimation: 0
+    ProjectileSpawnFrame: 0
   TotalCombos: 2
   ComboInterval: 0.3
   animator: {fileID: 8100480318840370633}

@@ -18665,7 +18665,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &216511847
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20755,7 +20755,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 397476178278904645, guid: 2348145b350da85429bce5aa9dfb178e, type: 3}
       propertyPath: Color_
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 397476178278904645, guid: 2348145b350da85429bce5aa9dfb178e, type: 3}
       propertyPath: playerData
