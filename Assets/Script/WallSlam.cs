@@ -24,6 +24,7 @@ public class WallSlam : ProjectileObject
 
         triggertime = Time.time + ray.distance * timeOverDistance;
         hit = 0;
+        SoundManager.instance.PlaySFX("BrownSkill");
     }
 
     public override void Update()

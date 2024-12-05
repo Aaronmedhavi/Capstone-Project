@@ -12,8 +12,12 @@ public class Lightning : ProjectileParticle
     [Header("Visuals")]
     [SerializeField] private GameObject effectObject;
 
-    public List<Transform> hits = new(); 
-
+    public List<Transform> hits = new();
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        SoundManager.instance.PlaySFX("Yellow");
+    }
     public override void ProjectileLogic(GameObject other)
     {
         if (other.TryGetComponent<IEntity>(out var hit) && !hits.Contains(other.transform))

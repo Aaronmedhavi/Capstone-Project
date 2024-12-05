@@ -4,6 +4,12 @@ public class PoisonBall : ProjectileParticle
 {
     [Header("Poison Settings")]
     [SerializeField] private float radius;
+
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        SoundManager.instance.PlaySFX("Purple");
+    }
     public override void ProjectileLogic(GameObject other)
     {
         var colliders = Physics2D.OverlapCircleAll(other.transform.position, radius);
