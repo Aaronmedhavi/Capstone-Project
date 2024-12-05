@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+
 
 public interface IEntity
 {
@@ -36,6 +38,7 @@ public class Player : MonoBehaviour, IEntity
 
     private float maxHealth;
     private float health;
+
     public Rigidbody2D rb2d { get; private set; }
     public Animator animator { get; private set; }
     private SpriteRenderer _sr;
@@ -120,6 +123,8 @@ public class Player : MonoBehaviour, IEntity
     public void OnDeath()
     {
         ObjectPoolManager.ReleaseObject(gameObject);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
     }
     public void OnReceiveDamage(float value, float InvisDuration = -1, Transform origin = null)
     {
@@ -132,4 +137,12 @@ public class Player : MonoBehaviour, IEntity
             SM.ChangeState(State.onHit, 1);
         }
     }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("DeathZone"))
+        {
+            _Health = 0;
+        }
+    }
+
 }

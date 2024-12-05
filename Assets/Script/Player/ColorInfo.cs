@@ -25,6 +25,7 @@ public class ArrayElementTitleAttribute : PropertyAttribute
         Varname = ElementTitleVar;
     }
 }
+#if UNITY_EDITOR
 [CustomPropertyDrawer(typeof(ArrayElementTitleAttribute))]
 public class ArrayElementTitleDrawer : PropertyDrawer
 {
@@ -53,3 +54,4 @@ public class ArrayElementTitleDrawer : PropertyDrawer
         return TitleNameProp.enumNames[TitleNameProp.enumValueIndex];
     }
 }
+#endif

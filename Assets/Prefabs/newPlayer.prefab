@@ -310,9 +310,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c445bdc332aed514cb507c2dcf403731, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackableLayers:
-    serializedVersion: 2
-    m_Bits: 0
   basicAttackView:
     Damage: 0
     Offset: {x: 0.5, y: 0.3, z: 0}

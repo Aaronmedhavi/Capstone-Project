@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class PlatformHandler : MonoBehaviour
@@ -26,7 +27,10 @@ public class PlatformHandler : MonoBehaviour
     {
         if (collision.gameObject.activeInHierarchy)
         {
-            // GoDown();
+            if (player.CompareTag("Player"))
+            {
+                GoDown();
+            }
             player.transform.SetParent(last_parent, true);
         }
     }

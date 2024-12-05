@@ -65,5 +65,5 @@ MonoBehaviour:
     - {fileID: 264593797222231889, guid: ad1639095f1167941aa8be9ee63db794, type: 3}
     mode: 1
     Projectile_Cooldown: 3
-    SkillPrefab: {fileID: 4832724454346457137, guid: 49c64c8fade988142983bfc642a61b45, type: 3}
+    SkillPrefab: {fileID: 8240921483825946558, guid: a9723c421d78cc042930220408140bae, type: 3}
     Skill_Cooldown: 10
