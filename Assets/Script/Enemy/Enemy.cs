@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour, IEntity
     [SerializeField] ColorData data;
     [SerializeField] private ColorInfo info;
     [SerializeField] private LayerMask layer;
+    [SerializeField] public Animator animator;
 
     [Header("Enemy Settings")]
     [SerializeField] private float Health;
@@ -59,6 +60,7 @@ public class Enemy : MonoBehaviour, IEntity
     private void Awake()
     {
         _sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
     private void Start()
     {
