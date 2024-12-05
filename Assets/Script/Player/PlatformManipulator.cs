@@ -26,7 +26,7 @@ public class PlatformHandler : MonoBehaviour
     {
         if (collision.gameObject.activeInHierarchy)
         {
-            GoDown();
+            // GoDown();
             player.transform.SetParent(last_parent, true);
         }
     }
