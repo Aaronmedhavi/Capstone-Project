@@ -8,6 +8,11 @@ public class Bubble : DamagePerParticle
 
     readonly Dictionary<IEntity, int> entities = new();
 
+    public override void OnEnable()
+    {
+        base.OnEnable();
+        SoundManager.instance.PlaySFX("Blue");
+    }
     public override void SetLayer(LayerMask layer, GameObject obj)
     {
         base.SetLayer(layer, obj);

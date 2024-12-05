@@ -23,6 +23,8 @@ public class WaterPillar : ProjectileObject
 
         triggertime = Time.time + ray.distance * timeOverDistance;
         hit = 0;
+        SoundManager.instance.PlaySFX("BlueSkill");
+
     }
     public override void Update()
     {

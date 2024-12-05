@@ -19061,6 +19061,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1601187978}
     m_Modifications:
     - target: {fileID: 3651377662719250335, guid: ca5f6845edb9e7544b3298bf3ddf2c2d, type: 3}
+      propertyPath: waitTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3651377662719250335, guid: ca5f6845edb9e7544b3298bf3ddf2c2d, type: 3}
       propertyPath: waypoints.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -19324,6 +19328,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1601187978}
     m_Modifications:
+    - target: {fileID: 3651377662719250335, guid: ca5f6845edb9e7544b3298bf3ddf2c2d, type: 3}
+      propertyPath: waitTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3651377662719250335, guid: ca5f6845edb9e7544b3298bf3ddf2c2d, type: 3}
       propertyPath: waypoints.Array.size
       value: 1
@@ -21650,7 +21658,7 @@ Transform:
   m_GameObject: {fileID: 1892398212}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.9036279, y: -1.44136, z: -10}
+  m_LocalPosition: {x: -1.9049778, y: -1.44136, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22708,3 +22716,4 @@ SceneRoots:
   - {fileID: 569472097}
   - {fileID: 740744916}
   - {fileID: 617557835}
+  - {fileID: 226823443}
