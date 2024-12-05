@@ -62,7 +62,6 @@ public class EnemyWalk : BaseState
     }
     public override void OnEnter()
     {
-        enemy.animator.Play("Run");
         if (ChaseSensor.IsInRange)
         {
             target_location = ChaseSensor.Target;
@@ -73,15 +72,43 @@ public class EnemyWalk : BaseState
                 enemy.wasChasing = true;
             }
         }
+        else
+        {
+            isChasing = false;
+        }
+        if (isChasing)
+            enemy.animator.Play("Run");
+        else
+            enemy.animator.Play("Walking");
         if (isChasing) Debug.Log("Chasing");
         else Debug.Log("Patroling");
     }
     public override void OnExit()
     {
+        enemy.animator.SetBool("IsChasing", false);
         isChasing = false;
     }
     public override void OnLogic()
     {
+        bool wasChasing = isChasing;
+
+        if (ChaseSensor.IsInRange)
+        {
+            target_location = ChaseSensor.Target;
+            isChasing = !enemy.MaxDistanceReached;
+        }
+        else
+        {
+            isChasing = false;
+        }
+        if (wasChasing != isChasing)
+        {
+            if (isChasing)
+                enemy.animator.Play("Run");
+            else
+                enemy.animator.Play("Walking");
+            Debug.Log(isChasing ? "Started Chasing" : "Stopped Chasing");
+        }
         GoToDestination();
     }   
     public void GoToDestination()
