@@ -4905,7 +4905,7 @@ MonoBehaviour:
   Damage: 10
   EnemyInvisDuration: -1
   col: {fileID: 2663296900389870393}
-  lifeTime: 0
+  lifeTime: 1
   groundLayers:
     serializedVersion: 2
     m_Bits: 136

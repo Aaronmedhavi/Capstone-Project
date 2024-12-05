@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combos:
   - color: 0
-    data: {fileID: 0}
+    data: {fileID: 11400000, guid: 769a9f6c8ec49b84a8a875f08e65ba56, type: 2}
   - color: 1
-    data: {fileID: 0}
+    data: {fileID: 11400000, guid: dac751abcb7fbac4da41c132050df9d3, type: 2}
   - color: 2
-    data: {fileID: 0}
+    data: {fileID: 11400000, guid: 006e1831348f0c245922cb3c66b89890, type: 2}
   - color: 3
     data: {fileID: 11400000, guid: 1e3dad4a3fa61e342bea5faf62773d33, type: 2}
   - color: 5
-    data: {fileID: 0}
+    data: {fileID: 11400000, guid: e309f4c3921400a45afdb3ce34f165a7, type: 2}
   - color: 6
-    data: {fileID: 0}
+    data: {fileID: 11400000, guid: 2412d736e461f864cacb142fd410319c, type: 2}
   - color: 4
-    data: {fileID: 0}
+    data: {fileID: 11400000, guid: c26b3ca93290f8a48aa29fc1e234185b, type: 2}

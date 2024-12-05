@@ -47,12 +47,12 @@ MonoBehaviour:
       Size: {x: 1, y: 1.3, z: 0}
       Frames: 7
       FramePoint: 5
-    - Damage: 50
+    - Damage: 75
       Offset: {x: 0.5, y: 0.2, z: 0}
       Size: {x: 1, y: 1.3, z: 0}
       Frames: 6
       FramePoint: 4
-    - Damage: 100
+    - Damage: 150
       Offset: {x: 0.5, y: 0.3, z: 0}
       Size: {x: 1, y: 1.3, z: 0}
       Frames: 5

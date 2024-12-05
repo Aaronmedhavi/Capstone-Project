@@ -105,10 +105,10 @@ BoxCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3519
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 3519
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -145,4 +145,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 10
   DefaultInvisibleCooldown: 0
-  DropChance: 30
+  DropChance: 50

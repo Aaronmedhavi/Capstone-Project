@@ -4902,10 +4902,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4af5c16bf3591145ba204420a0c0ac7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 10
+  Damage: 20
   EnemyInvisDuration: -1
   col: {fileID: 1288983614915007855}
-  lifeTime: 0
+  lifeTime: 1
   groundLayers:
     serializedVersion: 2
     m_Bits: 136
