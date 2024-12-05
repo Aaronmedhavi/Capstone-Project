@@ -17,6 +17,13 @@ public class PoisonBall : ProjectileParticle
         }
         Release();
     }
+#if UNITY_EDITOR
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
+#endif
 }
 
 //public class Fist : ProjectileParticle

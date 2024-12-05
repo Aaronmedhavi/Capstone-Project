@@ -313,6 +313,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc48ada8b7772cf47941a6a91706a941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
+  info: {fileID: 0}
+  layer:
+    serializedVersion: 2
+    m_Bits: 0
+  animator: {fileID: 49667993}
+  Health: 0
+  DefaultInvisibleCooldown: 0
+  DropChance: 0
   m_idleSettings:
     maxIdleTime: 2.5
     maxDistanceIdleTime: 2
@@ -321,6 +330,11 @@ MonoBehaviour:
     patrolfurthestDistance: 15
     patrolOffset: 3
     patrolSpeed: 3
+    ledgePosition: {fileID: 0}
+    ledgeDistance: 0
+    layerMask:
+      serializedVersion: 2
+      m_Bits: 0
   m_attackSettings:
     damage: 0
     DMGTimeInterval: 0
@@ -345,7 +359,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectiles: []
-  TotalCombos: 1
+  TotalCombos: 3
   ComboInterval: 0.3
   animator: {fileID: 49667993}
 --- !u!114 &49668000
@@ -421,7 +435,7 @@ Transform:
   m_GameObject: {fileID: 122606203}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.43, y: -3.44, z: 0}
+  m_LocalPosition: {x: -5.11, y: -3.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -442,12 +456,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28934b7f55f9f9a4b8f74c2d78e3f06a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 5
-  KnockbackMagnitude: 3
-  playerMovement: {fileID: 122606211}
-  playerCombat: {fileID: 122606212}
+  playerData: {fileID: 0}
+  colorData: {fileID: 0}
+  info: {fileID: 0}
+  playerMovement: {fileID: 0}
+  playerCombat: {fileID: 0}
   platformHandler: {fileID: 755051038}
   groundSensor: {fileID: 2016733954}
+  Color_: 0
 --- !u!61 &122606208
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -511,9 +527,11 @@ MonoBehaviour:
   jumpCooltime: 0.2
   jumpMaxHoldTime: 0.2
   jumpParticle: {fileID: 1469710651}
-  dspeed: 20
-  stamina_consumed: 5
-  dash_time: 0
+  DashSpeed: 20
+  DashCooldown: 0
+  Dashtime: 0.3
+  DashStopMagnitude: 0.5
+  DashDampeningValue: 1.15
   player: {fileID: 0}
 --- !u!114 &122606212
 MonoBehaviour:
@@ -1339,7 +1357,7 @@ MonoBehaviour:
   platformLayer:
     serializedVersion: 2
     m_Bits: 8
-  DetectorSize: {x: 0.23, y: 0.0125}
+  LayerName: 
   offset: {x: 0, y: -0.06}
   size: {x: 0.6, y: 0.1}
 --- !u!61 &755051039
@@ -2429,15 +2447,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4179682432261053982, guid: 086eb01ce5c1668479e8f1974025fbdd, type: 3}
       propertyPath: m_Size.x
-      value: 1.4933718
+      value: 6.735861
       objectReference: {fileID: 0}
     - target: {fileID: 4179682432261053982, guid: 086eb01ce5c1668479e8f1974025fbdd, type: 3}
       propertyPath: m_Offset.x
-      value: 0.04619211
+      value: -0.007302642
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280974754343168441, guid: 086eb01ce5c1668479e8f1974025fbdd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3.0076163
       objectReference: {fileID: 0}
     - target: {fileID: 6280974754343168441, guid: 086eb01ce5c1668479e8f1974025fbdd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.0592
+      value: -0.2018
       objectReference: {fileID: 0}
     - target: {fileID: 6280974754343168441, guid: 086eb01ce5c1668479e8f1974025fbdd, type: 3}
       propertyPath: m_LocalPosition.y
