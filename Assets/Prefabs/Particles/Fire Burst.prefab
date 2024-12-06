@@ -4858,7 +4858,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 11
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -4897,6 +4897,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8037414983837190095}
     m_Modifications:
+    - target: {fileID: 1524418238448676522, guid: ec63ae761aa8aa147bc6206d18fe3579, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1730216429415213367, guid: ec63ae761aa8aa147bc6206d18fe3579, type: 3}
       propertyPath: m_Name
       value: Fire Explosion
@@ -4962,6 +4966,10 @@ PrefabInstance:
     - target: {fileID: 3590984670525165749, guid: e605ea0629fda8843b331c0ceb92d311, type: 3}
       propertyPath: m_Name
       value: Fire Spark
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702507334889759912, guid: e605ea0629fda8843b331c0ceb92d311, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5702507334889759912, guid: e605ea0629fda8843b331c0ceb92d311, type: 3}
       propertyPath: m_Materials.Array.size
@@ -5193,6 +5201,10 @@ PrefabInstance:
     - target: {fileID: 6813188144828158592, guid: 6a44fa1b7ddc3044b87e21b068d8e8d8, type: 3}
       propertyPath: m_Name
       value: Smoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 7358968161721295877, guid: 6a44fa1b7ddc3044b87e21b068d8e8d8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

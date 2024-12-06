@@ -84,7 +84,8 @@ public class Player : MonoBehaviour, IEntity
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         _sr = GetComponent<SpriteRenderer>();
-        SetColor(Color_);
+        RandomColors();
+        //SetColor(Color_);
 
         maxHealth = playerData.playerStats.MaxHealth;
         _Health = maxHealth;
@@ -144,5 +145,19 @@ public class Player : MonoBehaviour, IEntity
             _Health = 0;
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Enemy"))
+        {
+            OnReceiveDamage(100f);
+        }
+    }
 
+    private void RandomColors()
+    {
+        System.Array colors = System.Enum.GetValues(typeof(Recipe.ColorItems));
+        int randomIndex = UnityEngine.Random.Range(0, colors.Length);
+        Recipe.ColorItems randomColor = (Recipe.ColorItems)colors.GetValue(randomIndex);
+        SetColor(randomColor);
+    }
 }

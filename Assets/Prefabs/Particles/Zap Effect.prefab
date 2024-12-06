@@ -4858,7 +4858,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 11
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -4959,6 +4959,10 @@ PrefabInstance:
     - target: {fileID: 2605667911794418878, guid: 73aaa9cfaba050143a904cf531ad537e, type: 3}
       propertyPath: m_Name
       value: Zap burst
+      objectReference: {fileID: 0}
+    - target: {fileID: 8273086630176060970, guid: 73aaa9cfaba050143a904cf531ad537e, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 3704645258284788739, guid: 73aaa9cfaba050143a904cf531ad537e, type: 3}

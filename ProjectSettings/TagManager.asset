@@ -8,6 +8,7 @@ TagManager:
   - Pickable
   - Look
   - DeathZone
+  - Enemy
   layers:
   - Default
   - TransparentFX
