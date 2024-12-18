@@ -17,6 +17,7 @@ public class Parallax : MonoBehaviour
     [SerializeField] private bool flipY = false;
 
     private Vector3 previousCameraPosition;
+    private Transform[] clones; // Store references to the clones
 
     private void Start()
     {
@@ -41,11 +42,20 @@ public class Parallax : MonoBehaviour
         );
         transform.position += move;
 
+        // Move clones along with the original
+        foreach (Transform clone in clones)
+        {
+            clone.position += move;
+        }
+
         // Horizontal Looping
         if (Mathf.Abs(cameraTransform.position.x - transform.position.x) >= spriteSize.x)
         {
             float offsetX = (cameraTransform.position.x > transform.position.x) ? spriteSize.x : -spriteSize.x;
             transform.position = new Vector3(transform.position.x + offsetX, transform.position.y, transform.position.z);
+
+            // Update clone positions after looping
+            UpdateClonePositions();
         }
 
         // Vertical Looping
@@ -53,6 +63,9 @@ public class Parallax : MonoBehaviour
         {
             float offsetY = (cameraTransform.position.y > transform.position.y) ? spriteSize.y : -spriteSize.y;
             transform.position = new Vector3(transform.position.x, transform.position.y + offsetY, transform.position.z);
+
+            // Update clone positions after looping
+            UpdateClonePositions();
         }
 
         previousCameraPosition = cameraTransform.position;
@@ -60,56 +73,61 @@ public class Parallax : MonoBehaviour
 
     private void CreateClones()
     {
-        Transform leftClone = Instantiate(
+        clones = new Transform[4]; // We have 4 clones: left, right, top, bottom
+
+        clones[0] = Instantiate(
             this.transform,
             new Vector3(transform.position.x - spriteSize.x, transform.position.y, transform.position.z),
             transform.rotation,
             transform.parent
         );
-        leftClone.name = this.name + "_Left";
-        Parallax leftParallax = leftClone.GetComponent<Parallax>();
-        if (leftParallax != null)
-        {
-            leftParallax.enabled = false;
-        }
+        clones[0].name = this.name + "_Left";
+        DisableParallaxComponent(clones[0]);
 
-        Transform rightClone = Instantiate(
+        clones[1] = Instantiate(
             this.transform,
             new Vector3(transform.position.x + spriteSize.x, transform.position.y, transform.position.z),
             transform.rotation,
             transform.parent
         );
-        rightClone.name = this.name + "_Right";
-        Parallax rightParallax = rightClone.GetComponent<Parallax>();
-        if (rightParallax != null)
-        {
-            rightParallax.enabled = false;
-        }
+        clones[1].name = this.name + "_Right";
+        DisableParallaxComponent(clones[1]);
 
-        Transform topClone = Instantiate(
+        clones[2] = Instantiate(
             this.transform,
             new Vector3(transform.position.x, transform.position.y + spriteSize.y, transform.position.z),
             transform.rotation,
             transform.parent
         );
-        topClone.name = this.name + "_Top";
-        Parallax topParallax = topClone.GetComponent<Parallax>();
-        if (topParallax != null)
-        {
-            topParallax.enabled = false;
-        }
+        clones[2].name = this.name + "_Top";
+        DisableParallaxComponent(clones[2]);
 
-        Transform bottomClone = Instantiate(
+        clones[3] = Instantiate(
             this.transform,
             new Vector3(transform.position.x, transform.position.y - spriteSize.y, transform.position.z),
             transform.rotation,
             transform.parent
         );
-        bottomClone.name = this.name + "_Bottom";
-        Parallax bottomParallax = bottomClone.GetComponent<Parallax>();
-        if (bottomParallax != null)
+        clones[3].name = this.name + "_Bottom";
+        DisableParallaxComponent(clones[3]);
+    }
+
+    // Helper function to disable the Parallax component on a clone
+    private void DisableParallaxComponent(Transform clone)
+    {
+        Parallax parallax = clone.GetComponent<Parallax>();
+        if (parallax != null)
         {
-            bottomParallax.enabled = false;
+            parallax.enabled = false;
         }
+    }
+
+    // Helper function to update the positions of the clones relative to the original
+    private void UpdateClonePositions()
+    {
+        clones[0].position = new Vector3(transform.position.x - spriteSize.x, transform.position.y, transform.position.z); // Left
+        clones[1].position = new Vector3(transform.position.x + spriteSize.x, transform.position.y, transform.position.z); // Right
+        clones[2].position = new Vector3(transform.position.x, transform.position.y + spriteSize.y, transform.position.z); // Top
+        clones[3].position = new Vector3(transform.position.x, transform.position.y - spriteSize.y, transform.position.z); // Bottom
     }
 }

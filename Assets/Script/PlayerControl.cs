@@ -80,6 +80,24 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ToggleBackpack"",
+                    ""type"": ""Button"",
+                    ""id"": ""c4fe6e78-45f6-43f4-83b0-aa7655a5b5b0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Combine"",
+                    ""type"": ""Button"",
+                    ""id"": ""5ea623fd-1de9-451e-9b0a-32c40fbd70a4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -192,6 +210,28 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
                     ""action"": ""Skill"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""716d3f74-8f6a-4839-bd77-80681a3a40b0"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleBackpack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c40fe6de-a03d-4acf-96ed-4dac2de0d49e"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Combine"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -234,6 +274,8 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_Projectile = m_Player.FindAction("Projectile", throwIfNotFound: true);
         m_Player_Skill = m_Player.FindAction("Skill", throwIfNotFound: true);
+        m_Player_ToggleBackpack = m_Player.FindAction("ToggleBackpack", throwIfNotFound: true);
+        m_Player_Combine = m_Player.FindAction("Combine", throwIfNotFound: true);
         // Main
         m_Main = asset.FindActionMap("Main", throwIfNotFound: true);
         m_Main_Pause = m_Main.FindAction("Pause", throwIfNotFound: true);
@@ -304,6 +346,8 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_Projectile;
     private readonly InputAction m_Player_Skill;
+    private readonly InputAction m_Player_ToggleBackpack;
+    private readonly InputAction m_Player_Combine;
     public struct PlayerActions
     {
         private @PlayerControl m_Wrapper;
@@ -314,6 +358,8 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @Projectile => m_Wrapper.m_Player_Projectile;
         public InputAction @Skill => m_Wrapper.m_Player_Skill;
+        public InputAction @ToggleBackpack => m_Wrapper.m_Player_ToggleBackpack;
+        public InputAction @Combine => m_Wrapper.m_Player_Combine;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -341,6 +387,12 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @Skill.started += instance.OnSkill;
             @Skill.performed += instance.OnSkill;
             @Skill.canceled += instance.OnSkill;
+            @ToggleBackpack.started += instance.OnToggleBackpack;
+            @ToggleBackpack.performed += instance.OnToggleBackpack;
+            @ToggleBackpack.canceled += instance.OnToggleBackpack;
+            @Combine.started += instance.OnCombine;
+            @Combine.performed += instance.OnCombine;
+            @Combine.canceled += instance.OnCombine;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -363,6 +415,12 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
             @Skill.started -= instance.OnSkill;
             @Skill.performed -= instance.OnSkill;
             @Skill.canceled -= instance.OnSkill;
+            @ToggleBackpack.started -= instance.OnToggleBackpack;
+            @ToggleBackpack.performed -= instance.OnToggleBackpack;
+            @ToggleBackpack.canceled -= instance.OnToggleBackpack;
+            @Combine.started -= instance.OnCombine;
+            @Combine.performed -= instance.OnCombine;
+            @Combine.canceled -= instance.OnCombine;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -434,6 +492,8 @@ public partial class @PlayerControl: IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnProjectile(InputAction.CallbackContext context);
         void OnSkill(InputAction.CallbackContext context);
+        void OnToggleBackpack(InputAction.CallbackContext context);
+        void OnCombine(InputAction.CallbackContext context);
     }
     public interface IMainActions
     {

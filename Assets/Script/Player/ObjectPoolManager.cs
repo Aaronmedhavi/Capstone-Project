@@ -6,7 +6,7 @@ public class ObjectPoolManager : MonoBehaviour
 {
     public enum PooledInfo
     {
-        GameObject,
+        GameObject, 
         Canvas,
         Particle,
         None

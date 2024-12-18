@@ -84,8 +84,8 @@ public class Player : MonoBehaviour, IEntity
         rb2d = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         _sr = GetComponent<SpriteRenderer>();
-        RandomColors();
-        //SetColor(Color_);
+        //RandomColors();
+        SetColor(Color_);
 
         maxHealth = playerData.playerStats.MaxHealth;
         _Health = maxHealth;

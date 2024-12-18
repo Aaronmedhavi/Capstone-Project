@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Inventory : MonoBehaviour
 {
     [SerializeField] Recipe recipe;
     [SerializeField] float maxCount;
+    public InputAction combineAction;
 
     [NonSerialized] public Player player;
     //[SerializeField] List> ini list buat displaynya
@@ -13,9 +15,14 @@ public class Inventory : MonoBehaviour
     private List<Recipe.ColorCount> dominantColor = new(); 
     float count = 0;
     public bool isFull => count >= maxCount;
+
     private void OnEnable()
     {
-        //assign button combine ke ini
+        if (combineAction != null)
+        {
+            combineAction.performed += ctx => Combine();
+            combineAction.Enable();
+        }
     }
     public bool Add(Recipe.ColorItems item)
     {

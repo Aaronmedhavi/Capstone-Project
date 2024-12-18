@@ -14,6 +14,7 @@ public class Backpack : MonoBehaviour, IPickable, ICommand
     [SerializeField] private InputAction input;
     [SerializeField] private GameObject backpackPanel;
     [SerializeField] private Inventory colorinventory;
+    [SerializeField] private InputActionReference toggleBackpackAction;
 
     [NonSerialized] public Player player;
     public bool isFull => colorinventory.isFull;
@@ -21,14 +22,20 @@ public class Backpack : MonoBehaviour, IPickable, ICommand
     public void OnAdd()
     {
         colorinventory.player = player;
-        input.performed += x => ToggleBackpack();
-        input.Enable();
+        if (toggleBackpackAction != null && toggleBackpackAction.action != null)
+        {
+            toggleBackpackAction.action.performed += ctx => ToggleBackpack();
+        }
         gameObject.SetActive(false);
     }
     public void Add(Recipe.ColorItems color) => colorinventory.Add(color);
     public void ToggleBackpack()
     {
-        if(Invoker.UndoCommand() != (ICommand) this) Invoker.ExecuteCommand(this);
+        if (Invoker.UndoCommand() != (ICommand)this)
+        {
+            Invoker.ExecuteCommand(this);
+        }
+        colorinventory.Combine(); ;
     }
     public void Execute() => backpackPanel.SetActive(false);
     public void Undo() => backpackPanel.SetActive(true);

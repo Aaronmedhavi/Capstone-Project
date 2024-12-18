@@ -107,9 +107,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5499d990d617e4947b48a5216686dc02, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_SortingOrder: 9
+  m_Sprite: {fileID: 21300000, guid: 1f7e768a36cefa743ac21858a7c0042c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -155,7 +155,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.2522523, y: 2.2522523}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 2.2522523, y: 2.2522523}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -177,4 +177,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   recipe: {fileID: 11400000, guid: ab9879fe78cb10349a08175d81b2dc4f, type: 2}
-  maxCount: 5
+  maxCount: 4

@@ -145,4 +145,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 10
   DefaultInvisibleCooldown: 0
-  DropChance: 50
+  DropChance: 99
